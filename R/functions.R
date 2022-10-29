@@ -92,10 +92,11 @@ avg_adjusted_js <- function(year,
   
   # create vids
   vids <- which(V(G)$year <= year)
+  target_srr_id <- which(V(G)$name == srr_name)
   
-  if (!which(V(G)$name == srr_name) %in% vids){
+  if (!(target_srr_id %in% vids)){
     
-    vids <- c(vids, which(V(G)$name == srr_name))
+    vids <- c(vids, target_srr_id)
               
   }
   
@@ -116,9 +117,19 @@ avg_adjusted_js <- function(year,
   js_df <- reshape::melt(js_matrix)
   colnames(js_df) <- c("v1", "v2", "jaccard")
   
+  # convert ids to names
+  for (i in 1:nrow(js_df))
+  {
+    v1 <- js_df$v1[i]
+    v2 <- js_df$v2[i]
+    js_df$v1[i] <- as.integer(igraph::V(G_sub)[v1]$name)
+    js_df$v2[i] <- as.integer(igraph::V(G_sub)[v2]$name)
+    
+  }
+  
   # remove entries where v1 == v2
-  rows_to_keep = which(js_df$v1 < js_df$v2)
-  # fix
+  rows_to_keep = which((js_df$v1 < js_df$v2) & 
+                         (js_df$v1 == srr_name | js_df$v2 == srr_name))
   
   js_df = js_df[rows_to_keep,]
   avg_adjusted_js <- mean(js_df$jaccard)
