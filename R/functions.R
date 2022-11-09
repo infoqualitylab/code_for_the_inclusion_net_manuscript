@@ -90,7 +90,7 @@ create_salt_graph <- function(raw_edge_list_file,
 }
 
 #
-# compute adjusted jaccard similarity -- new function
+# compute adjusted jaccard similarity
 #
 # input: the two srrs' name
 # output: their adjusted Jaccard similarity
@@ -144,4 +144,62 @@ adjusted_js <- function(srr_1_name, srr_2_name, G){
   # select the diagnoal element to return
   return(adjusted_js[1,2])
   
+}
+
+
+#
+# compute adjusted jaccard similarity
+#
+# input: the two srrs' name
+# output: their adjusted Jaccard similarity
+adjusted_js_minus_one <- function(srr_1_name, srr_2_name, G){
+  
+  # convert name to id
+  srr_1_id <- which(V(G)$name == srr_1_name)
+  srr_2_id <- which(V(G)$name == srr_2_name)
+  
+  # find the search year of srr_1 and srr_2
+  srr_1_year <- V(G)[srr_1_id]$year
+  srr_2_year <- V(G)[srr_2_id]$year
+  
+  # chose smaller of srr_1_year and srr_2_year as the subgraphing year
+  subgraph_year <- min(srr_1_year, srr_2_year)
+  
+  # subgraph ids
+  vids <- which(V(G)$year < subgraph_year)
+  
+  # add back srr_1_id or srr_2_id if either of them is not in the vids
+  if (!(srr_1_id %in% vids)){
+    
+    vids <- c(vids, srr_1_id)
+    
   }
+  
+  if (!(srr_2_id %in% vids)){
+    
+    vids <- c(vids, srr_2_id)
+    
+  }  
+  
+  
+  # construct the subgraph
+  G_sub <- igraph::induced.subgraph(graph=G, vids = vids)
+  
+  # recompute vids for srr_1 and srr_2
+  srr_1_id_sub <- which(V(G_sub)$name == srr_1_name)
+  srr_2_id_sub <- which(V(G_sub)$name == srr_2_name)
+  
+  # compute Jaccard similarity of srr_1 and srr_2
+  
+  adjusted_js <- igraph::similarity(
+    
+    graph = G_sub,
+    vids = c(srr_1_id_sub, srr_2_id_sub),
+    mode = "out",
+    method = 'jaccard'
+  )
+  
+  # select the diagnoal element to return
+  return(adjusted_js[1,2])
+  
+}
