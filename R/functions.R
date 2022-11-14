@@ -1,6 +1,6 @@
 # functions.R
-# author: Yuanxi Fu
-# this file holds necessary functions for the set of R script 
+# Author: Yuanxi Fu
+# This file holds necessary functions for the set of R scripts 
 # in the current repository
 
 library(igraph)
@@ -10,7 +10,7 @@ library(stringr)
 
 
 # Create the overall ExRx inclusion Graph
-# Three attributes: Name, Type, Year
+# Three attributes: name, type, year
 make_exrx_graph <- function(raw_edge_list_file, 
                                     raw_attr_list_file, 
                                     raw_search_date_file)
@@ -49,7 +49,7 @@ make_exrx_graph <- function(raw_edge_list_file,
   )
 }
 
-# create the overall Salt Controversy Inclusion Network
+# create the overall salt controversy inclusion network
 # Three attribute: name, type, year
 
 create_salt_graph <- function(raw_edge_list_file, 
@@ -107,22 +107,13 @@ adjusted_js <- function(srr_1_name, srr_2_name, G){
   # chose smaller of srr_1_year and srr_2_year as the subgraphing year
   subgraph_year <- min(srr_1_year, srr_2_year)
   
-  # subgraph ids
-  vids <- which(V(G)$year <= subgraph_year)
+  # subgraph ids -- PSR
+  # !! <= subgraph_year
+  vids <- which(V(G)$year <= subgraph_year & 
+                  V(G)$type == "Primary Study Report")
   
-  # add back srr_1_id or srr_2_id if either of them is not in the vids
-  if (!(srr_1_id %in% vids)){
-    
-    vids <- c(vids, srr_1_id)
-    
-  }
-  
-  if (!(srr_2_id %in% vids)){
-    
-    vids <- c(vids, srr_2_id)
-    
-  }  
-  
+  # affix srr_1_id and srr_2_id
+  vids <- c(vids, srr_1_id, srr_2_id)
   
   # construct the subgraph
   G_sub <- igraph::induced.subgraph(graph=G, vids = vids)
@@ -166,21 +157,12 @@ adjusted_js_minus_one <- function(srr_1_name, srr_2_name, G){
   subgraph_year <- min(srr_1_year, srr_2_year)
   
   # subgraph ids
-  vids <- which(V(G)$year < subgraph_year)
+  # !! < subgraph_year
+  vids <- which(V(G)$year < subgraph_year & 
+                  V(G)$type == "Primary Study Report")
   
-  # add back srr_1_id or srr_2_id if either of them is not in the vids
-  if (!(srr_1_id %in% vids)){
-    
-    vids <- c(vids, srr_1_id)
-    
-  }
-  
-  if (!(srr_2_id %in% vids)){
-    
-    vids <- c(vids, srr_2_id)
-    
-  }  
-  
+  # affix srr_1_id and srr_2_id
+  vids <- c(vids, srr_1_id, srr_2_id)
   
   # construct the subgraph
   G_sub <- igraph::induced.subgraph(graph=G, vids = vids)

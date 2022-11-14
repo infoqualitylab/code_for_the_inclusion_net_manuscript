@@ -57,8 +57,6 @@ adjusted_js_vector <- c()
 
 for (srr_1_name in srr_list){
   
-  print(srr_1_name)
-  
   for (srr_2_name in srr_list) {
     
     if (srr_1_name != srr_2_name){
