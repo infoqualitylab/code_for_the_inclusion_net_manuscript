@@ -185,3 +185,49 @@ adjusted_js_minus_one <- function(srr_1_name, srr_2_name, G){
   return(adjusted_js[1,2])
   
 }
+
+#
+# compute the dandelion-ness ratio
+#
+# input: the edge list, first column SRR, second column psr
+# output: the SSRs and their dandelion-ness
+# easier to code using the edge list rather than the graph
+# !!Assume the first column is SRR and the second column is PSR
+
+compute_d_ratio <- function(edge_list){
+  
+  # unify column names
+  colnames(edge_list) <- c("from", "to")
+  
+  # assume the first column is srr
+  srr_names <- as.vector(unlist(unique(edge_list[1])))
+  
+  d_ratio <- c()
+  
+  for (i in srr_names){
+    
+    
+    # get the number of psrs included in an srr
+    total_no_psr <- nrow(filter(edge_list, from == i))
+    
+    psr_names <- as.vector(unlist(filter(edge_list, from == i) %>% select(to)))
+    
+    total_lingering_psr <- 0
+    
+    # looping through psrs to find 
+    for (j in psr_names) {
+      
+      if (nrow(filter(edge_list, to == j)) == 1){
+        
+        total_lingering_psr <- total_lingering_psr + 1
+        
+      }
+    }
+    
+    d_ratio <- c(d_ratio, total_lingering_psr/total_no_psr)
+    
+  }
+  
+  return(tibble("srr"=srr_names, "d_ratio"=d_ratio))
+  
+}
