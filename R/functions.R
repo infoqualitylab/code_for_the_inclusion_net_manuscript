@@ -231,3 +231,40 @@ compute_d_ratio <- function(edge_list){
   return(tibble("srr"=srr_names, "d_ratio"=d_ratio))
   
 }
+
+# compute jaccard simliarities
+#
+# input: an inclusion network
+# output: return a dataframe with Jaccard simliarities of all SRR pairs
+#
+
+compute_js_df <- function(G){
+  
+  jaccard_similarities <- igraph::similarity(
+    graph = G,
+    vids = which(V(G)$type == "Systematic Review Report"),
+    mode = 'out',
+    method = 'jaccard'
+  )
+  
+  # reshape the matrix output to a data frame
+  js_df <- reshape::melt(jaccard_similarities)
+  colnames(js_df) <- c("v1", "v2", "jaccard")
+  
+  # remove entries where v1 == v2
+  rows_to_keep = which(js_df$v1 < js_df$v2)
+  js_df = js_df[rows_to_keep,]
+  
+  # create name dict to convert idx to our IDs
+  for (i in 1:nrow(js_df))
+  {
+    v1 <- js_df$v1[i]
+    v2 <- js_df$v2[i]
+    js_df$v1[i] <- as.integer(igraph::V(G)[v1]$name)
+    js_df$v2[i] <- as.integer(igraph::V(G)[v2]$name)
+    
+  }
+  
+  return(js_df)
+  
+}
