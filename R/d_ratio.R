@@ -48,7 +48,13 @@ ggplot(data = combdat, aes(x = d_ratio)) +
   geom_histogram(binwidth = 0.05, fill = 'grey', color = 'black') +
   facet_wrap(~dataset) +
   scale_x_continuous(name = "The Dandelion-ness Ratio") +
-  theme_bw()
+  theme(strip.text = element_text(size = 16),
+        legend.text = element_text(size = 16),
+        axis.text = element_text(size = 16),
+        axis.title.x = element_text(margin = margin(t = 8, r = 0, b = 0, l = 0, unit = 'pt'),
+                                    size = 18),
+        axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0, unit = 'pt'),
+                                    size = 18))
 
 mean(d_ratio_df_exrx$d_ratio) # 0.3974397
 mean(d_ratio_df_salt$d_ratio) # 0.07208308
