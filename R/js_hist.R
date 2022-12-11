@@ -57,7 +57,14 @@ ggplot(data = combdat, aes(x = jaccard)) +
   geom_histogram(binwidth = 0.05, fill = 'grey', color = 'black') +
   facet_wrap(~dataset) +
   scale_x_continuous(name = "Jaccard Similarity") +
-  theme_bw()
+  theme_bw() +
+  theme(strip.text = element_text(size = 16),
+        legend.text = element_text(size = 16),
+        axis.text = element_text(size = 16),
+        axis.title.x = element_text(margin = margin(t = 8, r = 0, b = 0, l = 0, unit = 'pt'),
+                                    size = 18),
+        axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0, unit = 'pt'),
+                                    size = 18))
 
 mean(js_df_exrx$jaccard) # 0.04725433
 mean(js_df_salt$jaccard) # 0.253034
