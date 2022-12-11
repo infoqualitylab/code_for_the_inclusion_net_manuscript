@@ -48,6 +48,7 @@ ggplot(data = combdat, aes(x = d_ratio)) +
   geom_histogram(binwidth = 0.05, fill = 'grey', color = 'black') +
   facet_wrap(~dataset) +
   scale_x_continuous(name = "The Dandelion-ness Ratio") +
+  theme_bw() +
   theme(strip.text = element_text(size = 16),
         legend.text = element_text(size = 16),
         axis.text = element_text(size = 16),
