@@ -88,6 +88,12 @@ ggplot(data=d_ratio_df_exrx, aes(x=reorder(name, -d_ratio), y=d_ratio, fill=type
   scale_fill_manual(values=cbPalette) +
   scale_colour_manual(values=cbPalette) +
   theme_bw() +
-  theme(legend.title= element_blank())
+  theme(legend.title= element_blank(), 
+        legend.text = element_text(size = 16),
+        axis.text = element_text(size = 16),
+        axis.title.x = element_text(margin = margin(t = 8, r = 0, b = 0, l = 0, unit = 'pt'),
+                                    size = 18),
+        axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0, unit = 'pt'),
+                                    size = 18))
 
 
