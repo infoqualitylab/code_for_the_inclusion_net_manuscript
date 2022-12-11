@@ -66,12 +66,12 @@ ggplot(data = combdat, aes(x = jaccard)) +
         axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0, unit = 'pt'),
                                     size = 18))
 
-mean(js_df_exrx$jaccard) # 0.04725433
+mean(js_df_exrx$jaccard) # 0.0469287
 mean(js_df_salt$jaccard) # 0.253034
 
 median(js_df_exrx$jaccard) # 0
 median(js_df_salt$jaccard) # 0.2083333
 
-sqrt(var(js_df_exrx$jaccard)) # 0.08257572
+sqrt(var(js_df_exrx$jaccard)) # 0.08193702
 sqrt(var(js_df_salt$jaccard)) # 0.2891774
 

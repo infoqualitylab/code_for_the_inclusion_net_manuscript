@@ -178,7 +178,14 @@ ggplot(data = avg_adjusted_js_df,
   scale_x_continuous(limits = c(2010, 2020), breaks = c(2012, 2018), labels = c(12, 18)) +
   scale_y_continuous(limits = c(0, 0.20)) +
   scale_color_manual(values = my_colors) +
-  labs(y = "Average Adjusted Jaccard Similarity", x = 'Year')
+  labs(y = "Average Adjusted Jaccard Similarity", x = 'Year') +
+  theme(strip.text = element_text(size = 12),
+        legend.text = element_text(size = 12),
+        axis.text = element_text(size = 12),
+        axis.title.x = element_text(margin = margin(t = 8, r = 0, b = 0, l = 0, unit = 'pt'),
+                                    size = 18),
+        axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0, unit = 'pt'),
+                                    size = 18))
 
 #####################################################
 ## Create Average Adjusted JS for Salt Controversy ##
@@ -315,6 +322,13 @@ ggplot(data = avg_adjusted_js_df,
   scale_x_continuous(limits = c(2000,2015), breaks = c(2002, 2008, 2014), labels = c("02", "08", "14")) +
   scale_y_continuous(limits = c(0, 1.0)) +
   scale_color_manual(values = my_colors) +
-  labs(y = "Average Adjusted Jaccard Similarity", x = 'Year')
+  labs(y = "Average Adjusted Jaccard Similarity", x = 'Year') +
+  theme(strip.text = element_text(size = 12),
+        legend.text = element_text(size = 12),
+        axis.text = element_text(size = 12),
+        axis.title.x = element_text(margin = margin(t = 8, r = 0, b = 0, l = 0, unit = 'pt'),
+                                    size = 18),
+        axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0, unit = 'pt'),
+                                    size = 18))
 
 

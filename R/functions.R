@@ -67,7 +67,8 @@ create_salt_graph <- function(raw_edge_list_file,
   
   attr_list <- data.frame('id' = raw_attr_list$ID,
                           'type' = raw_attr_list$node_type,
-                          'year' = raw_attr_list$year)
+                          'year' = raw_attr_list$year,
+                          'study_design' = raw_attr_list$study_design)
   
   search_date <- data.frame('id' = raw_search_date$ID,
                             'search_year' = raw_search_date$last_search_year, 
@@ -139,7 +140,7 @@ adjusted_js <- function(srr_1_name, srr_2_name, G){
 
 
 #
-# compute adjusted jaccard similarity
+# compute adjusted jaccard similarity year minus one
 #
 # input: the two srrs' name
 # output: their adjusted Jaccard similarity
