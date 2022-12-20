@@ -1,6 +1,6 @@
-## Inclusion Network Manuscript
+# Inclusion Network Manuscript
 
-# Ffile Description
+## File Description
 R: R code for "“Exploring Evidence Selection with the Inclusion Network” manuscript by Yuanxi Fu, Caitlin Vitosky Clarke, Mark Van Moer, and Jodi Schneider  
 
 functions.R: contained necessary functions for running other scripts in the folder. Sourced at the top of each script.
