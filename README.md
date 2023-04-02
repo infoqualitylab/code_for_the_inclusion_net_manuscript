@@ -3,7 +3,7 @@
 ## File Description
 
 ### Original
-Code for preprint: Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). Exploring Evidence Selection with the Inclusion Network. MetaArXiv. https://doi.org/10.31222/osf.io/zh9vp
+Code for preprint: Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). Exploring Evidence Selection with the Inclusion Network. MetaArXiv. [https://doi.org/10.31222/osf.io/zh9vp](https://doi.org/10.31222/osf.io/zh9vp)
 
 R: R code
 functions.R: contained necessary functions for running other scripts in the folder. Sourced at the top of each script.
