@@ -10,7 +10,7 @@
 # The Inclusion Network of 27 Review Articles Published between 2013-2018 
 # Investigating the Relationship Between Physical Activity and Depressive Symptoms. 
 # University of Illinois at Urbana-Champaign. 
-# https://doi.org/10.13012/B2IDB-4614455_V2
+# https://doi.org/10.13012/B2IDB-4614455_V1
 
 rm(list = ls())
 
@@ -30,11 +30,15 @@ G_exrx <- make_exrx_graph(raw_edge_list_file_exrx,
 # produce the adjusted jaccard similarity dataframe for the ExRx inclusion network
 adj_js_df_exrx <- compute_adj_js_df(G_exrx)
 
+rows_to_keep <- which(as.integer(adj_js_df_exrx$srr_1_name) 
+                      < as.integer(adj_js_df_exrx$srr_2_name))
+
+adj_js_df_exrx[rows_to_keep,]
+
 srr_search_date <- read.csv(file=raw_search_date_file_exrx) %>% 
   select(article_id, search_year, search_month) %>%
-  mutate(date=lubridate::make_date(search_year, search_month)) %>% arrange(date)
-
-srr_search_date <- srr_search_date %>% mutate(rank=rank(date))
+  mutate(date=lubridate::make_date(search_year, search_month)) %>% 
+  arrange(date) %>% mutate(rank=rank(date))
 
 # create vectors for the nex step of computation
 # srr_vector <- srr_search_date$article_id
