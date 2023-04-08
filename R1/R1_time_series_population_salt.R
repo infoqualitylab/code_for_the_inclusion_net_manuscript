@@ -30,6 +30,10 @@ G_salt <- create_salt_graph(raw_edge_list_file_salt,
 
 # produce the adjusted jaccard similarity dataframe for the salt controversy inclusion network
 adj_js_df_salt <- compute_adj_js_df(G_salt)
+rows_to_keep <- which(as.integer(adj_js_df_salt$srr_1_name) 
+                      < as.integer(adj_js_df_salt$srr_2_name))
+
+adj_js_df_salt[rows_to_keep,]
 
 srr_search_date <- read.csv(file=raw_search_date_file_salt) %>% 
   select(ID, last_search_year, last_search_month) %>%
