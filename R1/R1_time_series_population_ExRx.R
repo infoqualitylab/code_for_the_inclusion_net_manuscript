@@ -10,7 +10,7 @@
 # The Inclusion Network of 27 Review Articles Published between 2013-2018 
 # Investigating the Relationship Between Physical Activity and Depressive Symptoms. 
 # University of Illinois at Urbana-Champaign. 
-# https://doi.org/10.13012/B2IDB-4614455_V1
+# https://doi.org/10.13012/B2IDB-4614455_V2
 
 rm(list = ls())
 
