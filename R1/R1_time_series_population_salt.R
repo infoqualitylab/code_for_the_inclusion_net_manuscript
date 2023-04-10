@@ -52,8 +52,7 @@ avg_js_vector <- c()
 
 for (i in search_date_rank_vector[2:length(search_date_rank_vector)]){
   
-  srr_group <- srr_search_date %>% filter(rank<=i) %>%
-    select(ID)
+  srr_group <- srr_search_date %>% filter(rank<=i) %>% select(ID)
   
   avg_js <- adj_js_df_salt %>% 
     filter(srr_1_name %in% srr_group$ID, 
@@ -64,8 +63,11 @@ for (i in search_date_rank_vector[2:length(search_date_rank_vector)]){
   
 }
 
+# artificially adding the first data point: (1.0, 2000-07-01)
+avg_js_vector <- c(1.0, avg_js_vector)
+
 # create time series df
-ts_df <- data.table(search_date = search_date_vector[2:length(search_date_vector)],
+ts_df <- data.table(search_date = search_date_vector,
                     avg_js = avg_js_vector)
 
 ggplot(ts_df) +
