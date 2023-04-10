@@ -7,6 +7,9 @@ library(igraph)
 library(tidyverse)
 library(reshape)
 library(stringr)
+library(data.table)
+library(stringr)
+library(scales)
 
 
 # Create the overall ExRx inclusion Graph
