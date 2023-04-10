@@ -18,7 +18,6 @@
 # https://doi.org/10.13012/B2IDB-6128763_V2
 
 rm(list = ls())
-
 source("R1_functions.R")
 
 # construct the two inclusion network
