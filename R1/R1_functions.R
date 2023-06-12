@@ -12,6 +12,8 @@ library(stringr)
 library(scales)
 library(lubridate)
 
+# seperated edge_list and attribute list making functions for the two datasets
+# due to slight variations between the two datasets
 make_edge_list_exrx <- function(exrx_edge_list_file_path){
   
   raw_edge_list <- read.csv(exrx_edge_list_file_path)
@@ -23,8 +25,94 @@ make_edge_list_exrx <- function(exrx_edge_list_file_path){
 }
 
 
-make_attr_list_exrx <- function(){
+make_attr_list_exrx <- function(exrx_report_list_file_path, 
+                                exrx_srr_search_date_file_path){
   
+  
+  # load input files
+  report_list <- read.csv(exrx_report_list_file_path)
+  srr_search_date <- read.csv(exrx_srr_search_date_file_path)
+  srr_search_date <- srr_search_date  %>% dplyr::select(article_id, search_year, search_month, search_day)
+  
+  # concatenate the search_year, search_month, and search_day
+  # when search_day is N/A, concatenate as Y-m
+  # when search_day is not N/A, concatenate as m/d/Y
+  
+  srr_search_date_vector <- c()
+  
+  for (i in (1:nrow(srr_search_date))){
+    
+    if (srr_search_date[i, ]$search_day == 'N/A'){
+      
+      srr_search_date_vector <- c(srr_search_date_vector, 
+                                  stringr::str_c(srr_search_date[i, ]$search_year,
+                                                 '-',
+                                                 srr_search_date[i, ]$search_month
+                                  ))
+    }else{
+      
+      srr_search_date_vector <- c(srr_search_date_vector, 
+                                  stringr::str_c(srr_search_date[i, ]$search_month,
+                                                 '/',
+                                                 srr_search_date[i, ]$search_day,
+                                                 '/',
+                                                 srr_search_date[i, ]$search_year
+                                  ))
+      
+      
+    }
+    
+  }
+  
+  # create a new column called "temporal_seq_date" to store the date used 
+  # to compute temporal seq
+  srr_search_date$temporal_seq_date <- srr_search_date_vector
+  srr_search_date <- dplyr::select(srr_search_date, article_id, temporal_seq_date)
+  
+  # merge srr_search_date and report_list
+  report_list <- dplyr::left_join(x=report_list, y=srr_search_date, by='article_id')
+  
+  # fill the temporal_seq_date field with pub_date 
+  # if the temporal_seq_date field is NA
+  for (i in (1:nrow(report_list))){
+    
+    if (is.na(report_list[i,]$temporal_seq_date)){
+      
+      report_list[i,]$temporal_seq_date <- report_list[i,]$date
+      
+      
+    }
+    
+  }
+  
+  date_vector <- report_list$temporal_seq_date
+  
+  # resolve date format difference in temporal_seq_date column
+  # convert format Y to 7/1/Y (mid of the year)
+  pattern <- "(^[0-9]{4}$)"
+  replacement <- "7/1/\\1"
+  date_vector_1 <- stringr::str_replace_all(date_vector, 
+                                            pattern = pattern,
+                                            replacement = replacement)
+  
+  # convert format Y-m to m/15/Y (mid of the month)
+  pattern <- "(^[0-9]{4})-([0-9]{1,2}$)"
+  replacement <- "\\2/15/\\1"
+  date_vector_2 <- stringr::str_replace_all(date_vector_1, 
+                                            pattern = pattern,
+                                            replacement = replacement)
+  
+  # parse string into date data format
+  date_vector_parsed <- lubridate::parse_date_time(date_vector_2, orders = c("m/d/Y"))
+  report_list$temporal_seq_date_parsed <- date_vector_parsed
+  # create a rank vector
+  rank_vector <- rank(date_vector_parsed)
+  
+  # add a new column to report_list data frame called "temporal_seq_rank 
+  # to store the rank vector
+  report_list$temporal_seq_rank <- rank_vector
+  
+  return(report_list)
 
 }
 
@@ -40,17 +128,18 @@ make_edge_list_salt <- function(salt_edge_list_file_path){
 
 # mainly, we add a temporal_seq_rank column to the report_list
 # returned dataframe is the attr_list for graph creation
-make_attr_list_salt <- function(report_list_file_path, 
-                                systematic_review_inclusion_criteria_file_path)
+make_attr_list_salt <- function(salt_report_list_file_path, 
+                                salt_srr_search_date_file_path)
   {
   
   # load input files
-  report_list <- read.csv(report_list_file_path)
-  srr_search_date <- read.csv(systematic_review_inclusion_criteria_file_path)
+  report_list <- read.csv(salt_report_list_file_path)
+  srr_search_date <- read.csv(salt_srr_search_date_file_path)
   srr_search_date <- srr_search_date  %>% dplyr::select(ID, last_search_year, last_search_month, last_search_day)
   
   # concatnate the last_search_year, last_search_month, and last_search_day
-  # when last_search_day is NA, I replace it with 15
+  # when last_search_day is NA, concatenate as Y-m
+  # when last_search_day is not NA, concatenate as m/d/Y
   
   srr_search_date_vector <- c()
   
@@ -59,12 +148,11 @@ make_attr_list_salt <- function(report_list_file_path,
     if (is.na(srr_search_date[i, ]$last_search_day)){
       
       srr_search_date_vector <- c(srr_search_date_vector, 
-                                  stringr::str_c(srr_search_date[i, ]$last_search_month,
-                                                 '/',
-                                                 '15',
-                                                 '/',
-                                                 srr_search_date[i, ]$last_search_year
+                                  stringr::str_c(srr_search_date[i, ]$last_search_year,
+                                                 '-',
+                                                 srr_search_date[i, ]$last_search_month
                                   ))
+      
     }else{
       
       srr_search_date_vector <- c(srr_search_date_vector, 
@@ -112,7 +200,7 @@ make_attr_list_salt <- function(report_list_file_path,
                                             replacement = replacement)
   
   # convert format Y-m to m/15/Y (mid of the month)
-  pattern <- "(^[0-9]{4})-([0-9]{2}$)"
+  pattern <- "(^[0-9]{4})-([0-9]{1,2}$)"
   replacement <- "\\2/15/\\1"
   date_vector_2 <- stringr::str_replace_all(date_vector_1, 
                                             pattern = pattern,
@@ -120,6 +208,8 @@ make_attr_list_salt <- function(report_list_file_path,
   
   # parse string into date data format
   date_vector_parsed <- lubridate::parse_date_time(date_vector_2, orders = c("m/d/Y"))
+  report_list$temporal_seq_date_parsed <- date_vector_parsed
+  
   # create a rank vector
   rank_vector <- rank(date_vector_parsed)
   
@@ -200,7 +290,9 @@ compute_adj_js_df <- function(G){
     
     for (srr_2_name in srr_list) {
       
-      if (srr_1_name != srr_2_name){
+      if (as.numeric(srr_1_name) < as.numeric(srr_2_name))
+        
+        {
         
         srr_1_vector <- c(srr_1_vector, srr_1_name)
         srr_2_vector <- c(srr_2_vector, srr_2_name)
