@@ -1,7 +1,6 @@
 #
 # R1_adjusted_JS.R
 #
-
 # author: Yuanxi Fu
 #
 # Where to Find the data
@@ -17,6 +16,7 @@
 # University of Illinois at Urbana-Champaign. 
 # https://doi.org/10.13012/B2IDB-6128763_V2
 
+
 rm(list = ls())
 source("R1_functions.R")
 
@@ -31,6 +31,10 @@ salt_srr_search_date_file_path <- 'data/salt/systematic_review_inclusion_criteri
 edge_list_salt <- make_edge_list_salt(salt_edge_list_file_path)
 attr_list_salt <- make_attr_list_salt(salt_report_list_file_path,
                                       salt_srr_search_date_file_path)
+
+# save the attribute list and edge list for other applications
+write.csv(attr_list_salt, 'attr_list_salt.csv')
+write.csv(edge_list_salt, 'edge_list_salt.csv')
 
 # create the graph of salt controversy
 G_salt <- make_graph(attr_list = attr_list_salt,
@@ -49,6 +53,10 @@ exrx_srr_search_date_file_path <- 'data/ExRx/review_article_details.csv'
 edge_list_exrx <- make_edge_list_exrx(exrx_edge_list_file_path)
 attr_list_exrx <- make_attr_list_exrx(exrx_report_list_file_path,
                                       exrx_srr_search_date_file_path)
+
+# save the attribute list and edge list for other applications
+write.csv(attr_list_exrx, 'attr_list_exrx.csv')
+write.csv(edge_list_exrx, 'edge_list_exrx.csv')
 
 # create the graph of salt controversy
 G_exrx <- make_graph(attr_list = attr_list_exrx,
