@@ -1,10 +1,6 @@
 #
 # salt_community_detection.R
 #
-# This file generates the community detection results for salt controversy inclusion network
-# reported in manuscript "Exploring Evidence Selection with the Inclusion Network"
-# by Yuanxi Fu, Caitlin Vitosky Clarke, Mark Van Moer, and Jodi Schneider
-
 # author: Yuanxi Fu
 #
 # Where to Find the data
