@@ -1,7 +1,8 @@
 # R1_functions.R
 # Author: Yuanxi Fu
 # This file holds necessary functions for the set of R scripts 
-# in the current repository
+# in the current folder 
+# https://github.com/infoqualitylab/code_for_the_inclusion_net_manuscript/tree/main/R1
 
 library(igraph)
 library(tidyverse)
@@ -104,6 +105,7 @@ make_attr_list_exrx <- function(exrx_report_list_file_path,
   
   # parse string into date data format
   date_vector_parsed <- lubridate::parse_date_time(date_vector_2, orders = c("m/d/Y"))
+  report_list$temporal_seq_date_same_precision <- date_vector_2
   report_list$temporal_seq_date_parsed <- date_vector_parsed
   # create a rank vector
   rank_vector <- rank(date_vector_parsed)
@@ -208,6 +210,7 @@ make_attr_list_salt <- function(salt_report_list_file_path,
   
   # parse string into date data format
   date_vector_parsed <- lubridate::parse_date_time(date_vector_2, orders = c("m/d/Y"))
+  report_list$temporal_seq_date_same_precision <- date_vector_2
   report_list$temporal_seq_date_parsed <- date_vector_parsed
   
   # create a rank vector
