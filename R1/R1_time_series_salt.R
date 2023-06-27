@@ -64,7 +64,7 @@ for (ID in srr_name_list){
     }
   }
   
-  # add date and rank
+  # add date and rank to SRR_2
   sub_adj_js_df <-
     merge(
       sub_adj_js_df,
@@ -101,9 +101,9 @@ avg_adj_js_ts_df <- tibble(date = lubridate::parse_date_time(date_vector, orders
                                  avg_ad_js = avg_adj_js_vector)
 
 # add labels for making facets in plotting
-avg_adj_js_ts_df$label <- stringr::str_c("#", avg_adj_js_ts_df$srr_name)
+avg_adj_js_ts_df$label <- stringr::str_c("SRR\n#", avg_adj_js_ts_df$srr_name)
 avg_adj_js_ts_df$label <- factor(avg_adj_js_ts_df$label,
-                                   levels = stringr::str_c("#", srr_name_list))
+                                   levels = stringr::str_c("SRR\n#", srr_name_list))
 
 # # old code, for traces divided by search date
 # avg_adj_js_ts_df <- avg_adj_js_ts_df %>% dplyr::inner_join(y= tibble(srr_name=srr_name_list, 
@@ -182,22 +182,3 @@ ggplot(data = avg_adj_js_ts_df,
                                     size = 18)) +
   scale_y_continuous(limits = c(0, 1.0)) +
   scale_x_date(date_breaks = "5 years", date_labels = '%y')
-
-# two rows
-ggplot(data = avg_adj_js_ts_df, 
-       mapping = aes(x = as.Date(date), y = avg_ad_js, group = label)) +
-  geom_line(color="black", show.legend = FALSE) +
-  geom_point(mapping = aes(color=Color)) +
-  facet_wrap(vars(label), ncol = 7) +
-  labs(y = "Average Adjusted Jaccard Similarity", x = 'Year') +
-  theme(strip.text = element_text(size = 12),
-        legend.text = element_text(size = 12),
-        legend.title = element_text(size = 14, face='bold'),
-        axis.text = element_text(size = 12),
-        axis.title.x = element_text(margin = margin(t = 8, r = 0, b = 0, l = 0, unit = 'pt'),
-                                    size = 18),
-        axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0, unit = 'pt'),
-                                    size = 18)) +
-  scale_y_continuous(limits = c(0, 1.0)) +
-  scale_x_date(date_breaks = "5 years", date_labels = '%y')
-
