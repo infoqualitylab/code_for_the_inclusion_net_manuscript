@@ -101,9 +101,9 @@ avg_adj_js_ts_df <- tibble(date = lubridate::parse_date_time(date_vector, orders
                            avg_ad_js = avg_adj_js_vector)
 
 # add labels for making facets in plotting
-avg_adj_js_ts_df$label <- stringr::str_c("#", avg_adj_js_ts_df$srr_name)
+avg_adj_js_ts_df$label <- stringr::str_c("SRR\n#", avg_adj_js_ts_df$srr_name)
 avg_adj_js_ts_df$label <- factor(avg_adj_js_ts_df$label,
-                                 levels = stringr::str_c("#", srr_name_list))
+                                 levels = stringr::str_c("SRR\n#", srr_name_list))
 
 # # old code, for traces divided by search date
 # avg_adj_js_ts_df <- avg_adj_js_ts_df %>% dplyr::inner_join(y= tibble(srr_name=srr_name_list, 
@@ -183,6 +183,11 @@ ggplot(data = avg_adj_js_ts_df,
         axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0, unit = 'pt'),
                                     size = 18)) +
   scale_y_continuous(limits = c(0, 0.2)) +
-  scale_x_date(date_breaks = "2 years", date_labels = '%y')
+  scale_x_date(date_breaks = "2 years", date_labels = '%y') +
+  geom_hline(aes(yintercept=0.12), linetype=2, color='green') + 
+  geom_hline(aes(yintercept=0.05), linetype=2, color='blue')
+
+
+
 
 
