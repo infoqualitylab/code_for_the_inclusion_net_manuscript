@@ -171,7 +171,9 @@ avg_adj_js_ts_df$Color <- factor(avg_adj_js_ts_df$Color,
 ggplot(data = avg_adj_js_ts_df, 
        mapping = aes(x = as.Date(date), y = avg_ad_js, group = label)) +
   geom_line(color="black", show.legend = FALSE) +
-  geom_point(mapping = aes(color=Color)) +
+  geom_point(mapping = aes(color=Color), size=1.5) +
+  scale_color_manual(values = c("Before the publication date" = "#CC79A7", 
+                                "After the publication date" = "#0072B2")) +
   facet_wrap(vars(label), ncol = 14) +
   labs(y = "Average Adjusted Jaccard Similarity", x = 'Year') +
   theme(strip.text = element_text(size = 12),
@@ -184,8 +186,8 @@ ggplot(data = avg_adj_js_ts_df,
                                     size = 18)) +
   scale_y_continuous(limits = c(0, 0.2)) +
   scale_x_date(date_breaks = "2 years", date_labels = '%y') +
-  geom_hline(aes(yintercept=0.12), linetype=2, color='green') + 
-  geom_hline(aes(yintercept=0.05), linetype=2, color='blue')
+  geom_hline(aes(yintercept=0.12), linetype=2, color='black') + 
+  geom_hline(aes(yintercept=0.05), linetype=2, color='black')
 
 
 
