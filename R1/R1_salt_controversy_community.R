@@ -254,3 +254,24 @@ dev.print(device = png,
 )
 
 dev.off()
+
+# fastgreedy: cluster_fast_greedy
+fastgreedy <- igraph::cluster_fast_greedy(largest_comp_undirected)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+
+plot(fastgreedy, 
+     largest_comp_undirected, 
+     layout = my_layout, 
+     vertex.shape = node_shape
+)
+
+
+dev.print(device = png,
+          filename = "communities_fastgreedy.png",
+          width = fig_width,
+          height = fig_height
+)
+
+dev.off()
+
