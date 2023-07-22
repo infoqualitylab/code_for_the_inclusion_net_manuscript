@@ -3,13 +3,18 @@
 #
 # author: Yuanxi Fu
 #
+# Description: this file is responsible for generating Figure 4 of the manuscript
+# Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
+# Exploring Evidence Selection with the Inclusion Network. MetaArXiv. 
+# https://doi.org/10.31222/osf.io/zh9vp 
+
+# Description: this file is also responsible for generating figures in the Table S2
+# of the supplementary material of the manuscript
+# Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
+# Exploring Evidence Selection with the Inclusion Network. MetaArXiv. 
+# https://doi.org/10.31222/osf.io/zh9vp 
+
 # Where to Find the data
-#
-# ExRx: Clarke, Caitlin; Lischwe Mueller, Natalie; Joshi, Manasi Ballal; Fu, Yuanxi; Schneider, Jodi (2022): 
-# The Inclusion Network of 27 Review Articles Published between 2013-2018 
-# Investigating the Relationship Between Physical Activity and Depressive Symptoms. 
-# University of Illinois at Urbana-Champaign. 
-# https://doi.org/10.13012/B2IDB-4614455_V1
 #
 # Salt: Fu, Yuanxi; Hsiao, Tzu-Kun; Joshi, Manasi Ballal (2022): 
 # The Salt Controversy Systematic Review Reports and Primary Study Reports Network Dataset . 
@@ -52,10 +57,10 @@ fig_right = 0.2
 fig_top = 0.2
 
 node_color <- case_when(
-  V(largest_comp)$study_design == "Randomized Controlled Trial" ~ "orange",
-  V(largest_comp)$study_design == "Cohort Study" ~ "pink",
-  V(largest_comp)$study_design == "Systematic Review" ~ "skyblue",
-  V(largest_comp)$study_design == "Case Control Study" ~ "yellow"
+  V(largest_comp)$study_design == "Randomized Controlled Trial" ~ "#E69F00",
+  V(largest_comp)$study_design == "Cohort Study" ~ "#D55E00",
+  V(largest_comp)$study_design == "Systematic Review" ~ "#56B4E9",
+  V(largest_comp)$study_design == "Case Control Study" ~ "#F0E442"
 )
 
 node_shape <- case_when(
@@ -83,7 +88,7 @@ dev.print(device = png,
 
 dev.off()
 
-# edge betweenness community 
+# btw edge betweenness community 
 largest_comp_undirected <- as.undirected(largest_comp)
 
 btw <- igraph::cluster_edge_betweenness(largest_comp_undirected)
@@ -98,7 +103,7 @@ plot(btw,
      )
 
 dev.print(device = png,
-          filename = "communities_edge_betweenness.png",
+          filename = "communities_btw.png",
           width = fig_width,
           height = fig_height
           )
@@ -106,7 +111,7 @@ dev.print(device = png,
 dev.off()
 
 
-# infomap community
+# imfomap: infomap community
 infomap <- igraph::infomap.community(largest_comp_undirected)
 
 par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
@@ -119,7 +124,46 @@ plot(infomap,
 )
 
 dev.print(device = png,
-          filename = "figure3_communities_infomap.png",
+          filename = "communities_infomap.png",
+          width = fig_width,
+          height = fig_height
+)
+
+dev.off()
+
+# cluster_leading_eigen
+cle <- igraph::cluster_leading_eigen(largest_comp_undirected)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+
+plot(cle, 
+     largest_comp_undirected, 
+     layout = my_layout, 
+     vertex.shape = node_shape
+)
+
+dev.print(device = png,
+          filename = "communities_cluster_leading_eigen.png",
+          width = fig_width,
+          height = fig_height
+)
+
+dev.off()
+
+# lpc: label.propagation.community
+lps <- igraph::label.propagation.community(largest_comp_undirected)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+
+plot(lps, 
+     largest_comp_undirected, 
+     layout = my_layout, 
+     vertex.shape = node_shape
+)
+
+
+dev.print(device = png,
+          filename = "communities_lpc.png",
           width = fig_width,
           height = fig_height
 )
@@ -127,3 +171,86 @@ dev.print(device = png,
 dev.off()
 
 
+# mlc: multilevel.community
+mlc <- igraph::multilevel.community(largest_comp_undirected)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+
+plot(mlc, 
+     largest_comp_undirected, 
+     layout = my_layout, 
+     vertex.shape = node_shape
+)
+
+
+dev.print(device = png,
+          filename = "communities_mlc.png",
+          width = fig_width,
+          height = fig_height
+)
+
+dev.off()
+
+
+# sgc: spinglass.community
+sgc <- igraph::spinglass.community(largest_comp_undirected)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+
+plot(sgc, 
+     largest_comp_undirected, 
+     layout = my_layout, 
+     vertex.shape = node_shape
+)
+
+
+dev.print(device = png,
+          filename = "communities_sgc.png",
+          width = fig_width,
+          height = fig_height
+)
+
+dev.off()
+
+
+# wtc: walktrap.community
+wtc <- igraph::walktrap.community(largest_comp_undirected)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+
+plot(wtc, 
+     largest_comp_undirected, 
+     layout = my_layout, 
+     vertex.shape = node_shape
+)
+
+
+dev.print(device = png,
+          filename = "communities_wtc.png",
+          width = fig_width,
+          height = fig_height
+)
+
+dev.off()
+
+
+
+# louvain: cluster_louvain
+louvain <- igraph::cluster_louvain(largest_comp_undirected)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+
+plot(louvain, 
+     largest_comp_undirected, 
+     layout = my_layout, 
+     vertex.shape = node_shape
+)
+
+
+dev.print(device = png,
+          filename = "communities_louvain.png",
+          width = fig_width,
+          height = fig_height
+)
+
+dev.off()
