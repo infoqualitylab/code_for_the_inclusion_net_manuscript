@@ -56,10 +56,10 @@ node_shape <- case_when(
 )
 
 node_color <- case_when(
-  V(G_exrx)$name %in% group_1 ~ "pink",
-  V(G_exrx)$name %in% group_2 ~ "skyblue",
-  V(G_exrx)$name %in% group_3 ~ "yellow",
-  TRUE ~ "grey"
+  V(G_exrx)$name %in% group_1 ~ "#0072B2",
+  V(G_exrx)$name %in% group_2 ~ "#E69F00",
+  V(G_exrx)$name %in% group_3 ~ "#F0E442",
+  TRUE ~ "#999999"
 )
 
 par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
@@ -75,7 +75,7 @@ plot(G_exrx, vertex.size=5,
 )
 
 dev.print(device = png,
-          filename = "figure8.png",
+          filename = "ExRx_groups.png",
           width = fig_width,
           height = fig_height)
 
