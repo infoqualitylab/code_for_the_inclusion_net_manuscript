@@ -19,7 +19,7 @@
 # Salt: Fu, Yuanxi; Hsiao, Tzu-Kun; Joshi, Manasi Ballal (2022): 
 # The Salt Controversy Systematic Review Reports and Primary Study Reports Network Dataset . 
 # University of Illinois at Urbana-Champaign. 
-# https://doi.org/10.13012/B2IDB-6128763_V2
+# https://doi.org/10.13012/B2IDB-6128763_V3
 
 rm(list = ls())
 source("R1_functions.R")
