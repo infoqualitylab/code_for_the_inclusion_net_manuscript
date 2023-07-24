@@ -5,8 +5,6 @@
 ### Original
 Code for preprint: Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). Exploring Evidence Selection with the Inclusion Network. MetaArXiv. [https://doi.org/10.31222/osf.io/zh9vp](https://doi.org/10.31222/osf.io/zh9vp)
 
-R: R code
-
 functions.R: contained necessary functions for running other scripts in the folder. Sourced at the top of each script.
 
 js_hist.R: script to generate Figure 4
@@ -21,4 +19,5 @@ python_core_periphery: code using cpnet ((Kojaku, S. (2022). A Python package fo
 
 ### R1
 Code for R1
+preprint: Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). Exploring Evidence Selection with the Inclusion Network. MetaArXiv. https://doi.org/10.31222/osf.io/zh9vp
 
