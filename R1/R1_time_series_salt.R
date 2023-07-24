@@ -1,8 +1,12 @@
 #
 # R1_time_series_salt.R
 #
-# author: Yuanxi Fu
-#
+# Author: Yuanxi Fu
+# Description: this file is responsible for generating Figure 10 of the manuscript
+# Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
+# Exploring Evidence Selection with the Inclusion Network. MetaArXiv. 
+# https://doi.org/10.31222/osf.io/zh9vp
+
 # Where to Find the data
 #
 #
