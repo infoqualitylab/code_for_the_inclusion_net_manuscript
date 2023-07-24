@@ -1,6 +1,6 @@
 # R1_d_ratio_exrx.R
 # Author: Yuanxi Fu
-# Description: This file creates Figure S2(a) in the supplementary material 
+# Description: This file creates Figure S3(a) in the supplementary material 
 # of the manuscript: 
 # Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
 # Exploring Evidence Selection with the Inclusion Network. 
