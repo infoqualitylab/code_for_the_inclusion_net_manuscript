@@ -2,23 +2,24 @@
 # R1_adjusted_JS.R
 #
 # Author: Yuanxi Fu
-# Description: this file is responsible for generating Figure 7 of the manuscript
+# Description: this file is responsible of generating figure 7 of the manuscript: 
 # Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
-# Exploring Evidence Selection with the Inclusion Network. MetaArXiv. 
-# https://doi.org/10.31222/osf.io/zh9vp 
-
+# Exploring Evidence Selection with the Inclusion Network. 
+# MetaArXiv. https://doi.org/10.31222/osf.io/zh9vp 
+#
+#
 # Where to Find the data
 #
 # ExRx: Clarke, Caitlin; Lischwe Mueller, Natalie; Joshi, Manasi Ballal; Fu, Yuanxi; Schneider, Jodi (2022): 
 # The Inclusion Network of 27 Review Articles Published between 2013-2018 
 # Investigating the Relationship Between Physical Activity and Depressive Symptoms. 
 # University of Illinois at Urbana-Champaign. 
-# https://doi.org/10.13012/B2IDB-4614455_V3
+# https://doi.org/10.13012/B2IDB-4614455_V2
 #
 # Salt: Fu, Yuanxi; Hsiao, Tzu-Kun; Joshi, Manasi Ballal (2022): 
 # The Salt Controversy Systematic Review Reports and Primary Study Reports Network Dataset . 
 # University of Illinois at Urbana-Champaign. 
-# https://doi.org/10.13012/B2IDB-6128763_V3
+# https://doi.org/10.13012/B2IDB-6128763_V2
 
 
 rm(list = ls())
@@ -66,11 +67,11 @@ write.csv(edge_list_exrx, 'edge_list_exrx.csv')
 G_exrx <- make_graph(attr_list = attr_list_exrx,
                      edge_list = edge_list_exrx)
 
-# produce the jaccard similarity dataframe for the salt controversy inclusion network
-adj_js_df_exrx <- compute_adj_js_df(G_exrx)
-
-# produce the adjusted jaccard similarity dataframe for the ExRx inclusion network
-adj_js_df_exrx <- compute_adj_js_df(G_exrx)
+# # produce the jaccard similarity dataframe for the salt controversy inclusion network
+# adj_js_df_exrx <- compute_adj_js_df(G_exrx)
+# 
+# # produce the adjusted jaccard similarity dataframe for the ExRx inclusion network
+# adj_js_df_exrx <- compute_adj_js_df(G_exrx)
 
 ######################
 ##  visualization   ##
