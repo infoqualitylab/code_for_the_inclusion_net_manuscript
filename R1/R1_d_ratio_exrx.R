@@ -1,6 +1,6 @@
 # R1_d_ratio_exrx.R
 # Author: Yuanxi Fu
-# Description: This file creates Figure S3(a) in the supplementary material 
+# Description: This file creates Figure S2(a) in the supplementary material 
 # of the manuscript: 
 # Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
 # Exploring Evidence Selection with the Inclusion Network. 
@@ -104,18 +104,51 @@ avg_d_ratio_df_exrx <- data.frame(
   max = max_d_ratio_list, 
   dataset = "exrx")
 
-# plot
-ggplot() + 
-  geom_point(data=d_ratio_df_exrx, mapping = aes(x=date, y=d_ratio), 
-             color='blue', shape=1, size=4) +
-  geom_point(data=avg_d_ratio_df_exrx, mapping=aes(x=date, y=mean)) +
-  geom_line(data=avg_d_ratio_df_exrx, mapping=aes(x=date, y=mean)) +
-  labs(x="Year", y="Dandelion-ness Ratio") +
-  scale_y_continuous(limits = c(-0.1, 1.1), breaks=c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0)) +
+# plot -- 1 -- scatter
+# ggplot() + 
+#   geom_point(data=d_ratio_df_exrx, mapping = aes(x=date, y=d_ratio), 
+#              color='blue', shape=1, size=4) +
+#   geom_point(data=avg_d_ratio_df_exrx, mapping=aes(x=date, y=mean)) +
+#   geom_line(data=avg_d_ratio_df_exrx, mapping=aes(x=date, y=mean)) +
+#   labs(x="Year", y="Dandelion-ness Ratio") +
+#   scale_y_continuous(limits = c(-0.1, 1.1), breaks=c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0)) +
+#   theme(strip.text = element_text(size = 12),
+#         axis.text = element_text(size = 12, face = 'bold'),
+#         axis.title.x = element_text(margin = margin(t = 8, r = 0, b = 0, l = 0, unit = 'pt'),
+#                                     size = 16),
+#         axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0, unit = 'pt'),
+#                                     size = 16)) +
+#   scale_x_datetime(date_breaks = '2 years', date_labels = '%Y')
+
+
+# concatenate the average
+srr_name_list <- attr_list_exrx[attr_list_exrx$node_type == 'Systematic Review Report',]$article_id
+d_ratio_df_exrx$label <- stringr::str_c("SRR #", d_ratio_df_exrx$srr)
+temp_df <- data.frame(srr = 'Mean', d_ratio = avg_d_ratio_df_exrx$mean,
+                      date = avg_d_ratio_df_exrx$date,
+                      label = 'Mean')
+d_ratio_df_exrx <- rbind(d_ratio_df_exrx, temp_df)
+
+d_ratio_df_exrx$label <- factor(d_ratio_df_exrx$label,
+                                levels = c(stringr::str_c("SRR #", srr_name_list),'Mean'))
+
+# plot -- 2 -- individual
+ggplot(data = d_ratio_df_exrx, 
+       mapping = aes(x = date, y = d_ratio, group = label)) +
+  geom_line(color="black", show.legend = FALSE) +
+  geom_point(size=1.5) +
+  facet_wrap(vars(label), ncol = 14) +
+  labs(y = "The Dandelion-ness Ratio", x = 'Year') +
   theme(strip.text = element_text(size = 12),
-        axis.text = element_text(size = 12, face = 'bold'),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 14, face='bold'),
+        axis.text = element_text(size = 12),
         axis.title.x = element_text(margin = margin(t = 8, r = 0, b = 0, l = 0, unit = 'pt'),
-                                    size = 16),
+                                    size = 18),
         axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0, unit = 'pt'),
-                                    size = 16)) +
-  scale_x_datetime(date_breaks = '2 years', date_labels = '%Y')
+                                    size = 18)) +
+  scale_y_continuous(limits = c(-0.1, 1.1), breaks = c(0.0, 0.5, 1.0)) +
+  scale_x_datetime(date_breaks = "2 years", date_labels = '%y') +
+  geom_hline(aes(yintercept=0.5), linetype=2, color='red')
+
+# export size (1200 * 600)
