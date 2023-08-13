@@ -1,7 +1,7 @@
 # R1_functions.R
 # Author: Yuanxi Fu
-# Description: This file holds necessary functions for the set of R scripts 
-# in the current folder: 
+# This file holds necessary functions for the set of R scripts 
+# in the current folder 
 # https://github.com/infoqualitylab/code_for_the_inclusion_net_manuscript/tree/main/R1
 
 library(igraph)
@@ -313,44 +313,5 @@ compute_adj_js_df <- function(G){
                                "adjusted_js" = adjusted_js_vector)
   
   return(adjusted_js_df)
-  
-}
-
-
-compute_d_ratio <- function(edge_list){
-  
-  # unify column names
-  colnames(edge_list) <- c("from", "to")
-  
-  # assume the first column is srr
-  srr_names <- as.vector(unlist(unique(edge_list[1])))
-  
-  d_ratio <- c()
-  
-  for (i in srr_names){
-    
-    
-    # get the number of psrs included in an srr
-    total_no_psr <- nrow(filter(edge_list, from == i))
-    
-    psr_names <- as.vector(unlist(filter(edge_list, from == i) %>% select(to)))
-    
-    total_lingering_psr <- 0
-    
-    # looping through psrs to find 
-    for (j in psr_names) {
-      
-      if (nrow(filter(edge_list, to == j)) == 1){
-        
-        total_lingering_psr <- total_lingering_psr + 1
-        
-      }
-    }
-    
-    d_ratio <- c(d_ratio, total_lingering_psr/total_no_psr)
-    
-  }
-  
-  return(tibble("srr"=srr_names, "d_ratio"=d_ratio))
   
 }

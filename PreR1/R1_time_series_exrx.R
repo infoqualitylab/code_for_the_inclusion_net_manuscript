@@ -2,13 +2,11 @@
 # R1_time_series_exrx.R
 #
 # Author: Yuanxi Fu
-# 
-# Description: # Description: this file is responsible of generating figure 8 
-# of the manuscript: 
+# Description: this file is responsible for generating Figure 8 of the manuscript
 # Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
-# Exploring Evidence Selection with the Inclusion Network. 
-# MetaArXiv. https://doi.org/10.31222/osf.io/zh9vp
-#
+# Exploring Evidence Selection with the Inclusion Network. MetaArXiv. 
+# https://doi.org/10.31222/osf.io/zh9vp
+
 # Where to Find the data
 #
 # ExRx: Clarke, Caitlin; Lischwe Mueller, Natalie; Joshi, Manasi Ballal; Fu, Yuanxi; Schneider, Jodi (2022): 
@@ -108,39 +106,27 @@ avg_adj_js_ts_df <- tibble(date = lubridate::parse_date_time(date_vector, orders
 
 # add labels for making facets in plotting
 avg_adj_js_ts_df$label <- stringr::str_c("SRR\n#", avg_adj_js_ts_df$srr_name)
-avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#2"] <- 'SRR\n#2*'
 avg_adj_js_ts_df$label <- factor(avg_adj_js_ts_df$label,
-                                 levels = c("SRR\n#2*",
-                                            "SRR\n#1",
-                                            "SRR\n#3",
-                                            "SRR\n#4",
-                                            "SRR\n#5",
-                                            "SRR\n#6",
-                                            "SRR\n#8",
-                                            "SRR\n#9",
-                                            "SRR\n#10",
-                                            "SRR\n#11",
-                                            "SRR\n#12",
-                                            "SRR\n#13",
-                                            "SRR\n#14",
-                                            "SRR\n#15",
-                                            "SRR\n#16",
-                                            "SRR\n#17",
-                                            "SRR\n#18",
-                                            "SRR\n#19",
-                                            "SRR\n#20",
-                                            "SRR\n#21",
-                                            "SRR\n#22",
-                                            "SRR\n#23",
-                                            "SRR\n#24",
-                                            "SRR\n#25",
-                                            "SRR\n#26",
-                                            "SRR\n#27"))
+                                 levels = stringr::str_c("SRR\n#", srr_name_list))
 
-# avg_adj_js_ts_df$label <- factor(avg_adj_js_ts_df$label,
-#                                  levels = stringr::str_c("SRR\n#", srr_name_list))
+# # old code, for traces divided by search date
+# avg_adj_js_ts_df <- avg_adj_js_ts_df %>% dplyr::inner_join(y= tibble(srr_name=srr_name_list, 
+#                                                  search_date=search_date_list), 
+#                                        by = "srr_name")
 
+# avg_adj_js_ts_df$Color <- rep('After the last search date', nrow(avg_adj_js_ts_df))
 
+# # add color column
+# for (i in 1:nrow(avg_adj_js_ts_df)){
+#   
+#   if (lubridate::parse_date_time(avg_adj_js_ts_df[i,]$search_date,
+#                                  orders = c("m/d/Y")) 
+#       < avg_adj_js_ts_df[i,]$date) {
+#     
+#     avg_adj_js_ts_df[i,]$Color <- 'Before the last search date'
+#   
+#     }
+# }
 
 # add color column
 # initiate
@@ -172,6 +158,13 @@ for (i in 1:nrow(avg_adj_js_ts_df)){
   }
 }
 
+# avg_adj_js_ts_df$Color <- dplyr::case_when(
+#   
+#   avg_adj_js_ts_df$classification == "Before the publication date" ~ "red",
+#   avg_adj_js_ts_df$classification == "After the publication date" ~ "black"
+#   
+# )
+
 # corerce the order of "After the publication date" and "Before the publication date"
 avg_adj_js_ts_df$Color <- factor(avg_adj_js_ts_df$Color,
                                  levels = c("Before the publication date",
@@ -196,8 +189,11 @@ ggplot(data = avg_adj_js_ts_df,
         axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0, unit = 'pt'),
                                     size = 18)) +
   scale_y_continuous(limits = c(0, 0.2)) +
-  scale_x_date(date_breaks = "2 years", date_labels = '%y')
+  scale_x_date(date_breaks = "2 years", date_labels = '%y') +
+  geom_hline(aes(yintercept=0.12), linetype=2, color='black') + 
+  geom_hline(aes(yintercept=0.05), linetype=2, color='black')
 
 
-# figure 1200 by 600
+
+
 
