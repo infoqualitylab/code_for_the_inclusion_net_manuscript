@@ -49,12 +49,6 @@ fig_left = 0.2
 fig_right = 0.2
 fig_top = 0.2
 
-group_1 <- c("2", "9", "12", "16", "21")
-group_2 <- c("1", "5", "6", "8","11", "15", "28")
-group_3 <- c("3", "4", "10", "13", "14", "17", "18", "19", "20",
-             "22", "23", "24", "25", "26", "27", "28")
-
-
 node_shape <- case_when(
   
   V(G_exrx)$node_type == "Systematic Review Report" ~ "square",
@@ -62,19 +56,29 @@ node_shape <- case_when(
   
 )
 
-# node_color <- case_when(
-#   V(G_exrx)$name %in% group_1 ~ "#0072B2",
-#   V(G_exrx)$name %in% group_2 ~ "#E69F00",
-#   V(G_exrx)$name %in% group_3 ~ "#F0E442",
-#   TRUE ~ "#999999"
-# )
-
 node_color <- case_when(
   V(G_exrx)$temporal_seq_rank == 204.0 ~ "#0072B2",
   V(G_exrx)$temporal_seq_rank <= 204.0 & V(G_exrx)$node_type == 'Primary Study Report' ~ "#E69F00",
   V(G_exrx)$node_type == 'Systematic Review Report' ~ 'white',
   TRUE ~ "#999999"
 )
+
+node_label <- c()
+node_type_temp <- V(G_exrx)$node_type
+node_name_temp <- V(G_exrx)$name
+
+for (i in 1:length(node_type_temp)){
+  
+  if (node_type_temp[i] == 'Systematic Review Report'){
+    
+    node_label <- c(node_label, node_name_temp[i])
+    
+  }else{
+    
+    node_label <- c(node_label, NA)
+    
+  }
+}
 
 par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
 
@@ -85,7 +89,9 @@ plot(G_exrx, vertex.size=5,
      vertex.color = node_color,
      vertex.shape = node_shape,
      layout = my_layout,
-     vertex.label = NA
+     vertex.label = node_label,
+     vertex.label.cex = 1.5,
+     vertex.label.font = 2
 )
 
 dev.print(device = png,
