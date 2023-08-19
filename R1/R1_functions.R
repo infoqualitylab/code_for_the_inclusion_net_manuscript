@@ -276,7 +276,7 @@ adjusted_js <- function(srr_1_name, srr_2_name, G){
   )
   
   # select the diagonal element to return
-  return(adjusted_js[1,2])
+  return(round(adjusted_js[1,2],3))
   
 }
 
@@ -354,3 +354,63 @@ compute_d_ratio <- function(edge_list){
   return(tibble("srr"=srr_names, "d_ratio"=d_ratio))
   
 }
+
+# add a regular JS computation routine
+reg_js <- function(srr_1_name, srr_2_name, G){
+  
+  # convert name to id, because the id are sequential but not the IDs (i.e., name)
+  srr_1_id <- which(V(G)$name == srr_1_name)
+  srr_2_id <- which(V(G)$name == srr_2_name)
+  
+  # compute Jaccard similarity of srr_1 and srr_2
+  
+  reg_js <- igraph::similarity(
+    
+    graph = G,
+    vids = c(srr_1_id, srr_2_id),
+    mode = "out",
+    method = 'jaccard'
+  )
+  
+  # select the diagonal element to return
+  return(round(reg_js[1,2],3))
+  
+}
+
+# add a regular JS dataframe computation routine
+compute_reg_js_df <- function(G){
+  
+  srr_list <- V(G)[V(G)$node_type == "Systematic Review Report"]$name
+  
+  # a data structure to store data
+  srr_1_vector <- c()
+  srr_2_vector <- c()
+  reg_js_vector <- c()
+  
+  for (srr_1_name in srr_list){
+    
+    for (srr_2_name in srr_list) {
+      
+      if (as.numeric(srr_1_name) < as.numeric(srr_2_name))
+        
+      {
+        
+        srr_1_vector <- c(srr_1_vector, srr_1_name)
+        srr_2_vector <- c(srr_2_vector, srr_2_name)
+        
+        reg_js_vector <- c(reg_js_vector,
+                           reg_js(srr_1_name, srr_2_name, G))
+        
+        
+      }
+    }
+  }
+  
+  reg_js_df <- data.frame("srr_1_name" = srr_1_vector, 
+                               "srr_2_name" = srr_2_vector, 
+                               "reg_js" = reg_js_vector)
+  
+  return(reg_js_df)
+  
+}
+
