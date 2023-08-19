@@ -80,6 +80,7 @@ for(idx in idx_list){
   reg_js_srr2[idx, 1] = "2"
   
 }
+  
 
 # produce the merged dataframe with difference
 both_js_srr2 <- dplyr::inner_join(x = dplyr::select(adj_js_srr2,srr_2_name, adjusted_js), 
@@ -87,36 +88,18 @@ both_js_srr2 <- dplyr::inner_join(x = dplyr::select(adj_js_srr2,srr_2_name, adju
                                   by= 'srr_2_name')
 
 both_js_srr2 <- both_js_srr2 %>%
-  dplyr:: mutate(diff = round((adjusted_js - reg_js)/adjusted_js * 100, 1))
+  dplyr:: mutate(js_diff = round((adjusted_js - reg_js)/adjusted_js * 100, 1))
 
-# stat testing -- ExRx
-# define two groups
-# (1) SRR #2 with SRR #1, #3, #4, #5, #6, and #8 to #28
-# (2) SRR #1, #3, #4, #5, #6, and #8 to #28 amongest themselves
 
-# g_1 <- adj_js_df_exrx %>% 
-#   filter(adj_js_df_exrx$srr_1_name == "2" | adj_js_df_exrx$srr_2_name == "2" ) %>%
-#   select(adjusted_js)
-# 
-# g_1 <- g_1$adjusted_js
-# 
-# g_2 <- adj_js_df_exrx %>% 
-#   filter(adj_js_df_exrx$srr_1_name != "2" & adj_js_df_exrx$srr_2_name != "2" ) %>%
-#   select(adjusted_js)
-# 
-# g_2 <- g_2$adjusted_js
-# 
-# adj_js <- c(g_1, g_2)
-# group <- factor(c(1,2))
-# 
-# wilcox.test(g_1, g_2, alternative = 'two.sided')
-# 
-# x <- c(g_1, g_2)
-# length((g_1))
-# length(g_2)
-# g <- factor(rep(1:2, c(26, 325)))
-# 
-# kruskal.test(x,g)
+both_js_srr2$srr_2_name <- as.integer(both_js_srr2$srr_2_name)
+
+both_js_srr2 <- both_js_srr2 %>% 
+  dplyr::left_join(x = both_js_srr2,
+                   y = dplyr::select(attr_list, article_id, temporal_seq_date_parsed),
+                   by = join_by(srr_2_name == article_id))
+
+
+both_js_srr2 <- both_js_srr2 %>% dplyr::mutate(search_diff = difftime(temporal_seq_date_parsed, '2012-07-15', units = 'days')/30)
 
 # investigate the negative decrease in between SRR #2 and SRR #8
 edge_list_temp <- edge_list %>% filter(from %in% c(2,8))
@@ -124,10 +107,12 @@ edge_list_temp <- edge_list %>% filter(from %in% c(2,8))
 edge_list_temp <- dplyr::left_join(x=edge_list_temp,
                                    y=dplyr::select(attr_list, article_id, temporal_seq_rank),
                                    by = join_by(from == article_id))
+
 edge_list_temp <- dplyr::rename(edge_list_temp, from_rank = 'temporal_seq_rank')
 
 edge_list_temp <- dplyr::left_join(x=edge_list_temp,
                                    y=dplyr::select(attr_list, article_id, temporal_seq_rank),
                                    by = join_by(to == article_id))
 edge_list_temp <- dplyr::rename(edge_list_temp, to_rank = 'temporal_seq_rank')
-  
+
+
