@@ -2,7 +2,7 @@
 # R1_adjusted_JS_ExRx.R
 #
 # Author: Yuanxi Fu
-# Description: this file is responsible of generating Table 1 of the manuscript: 
+# Description: this file is responsible of generating Table 1(a) of the manuscript: 
 # Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
 # Exploring Evidence Selection with the Inclusion Network. 
 # MetaArXiv. https://doi.org/10.31222/osf.io/zh9vp 
@@ -16,10 +16,6 @@
 # University of Illinois at Urbana-Champaign. 
 # https://doi.org/10.13012/B2IDB-4614455_V2
 #
-# Salt: Fu, Yuanxi; Hsiao, Tzu-Kun; Joshi, Manasi Ballal (2022): 
-# The Salt Controversy Systematic Review Reports and Primary Study Reports Network Dataset . 
-# University of Illinois at Urbana-Champaign. 
-# https://doi.org/10.13012/B2IDB-6128763_V2
 
 
 rm(list = ls())
@@ -49,9 +45,7 @@ adj_js_df <- compute_adj_js_df(G)
 reg_js_df <- compute_reg_js_df(G)
 
 
-
 # create a dataframe of adjusted JS ranked from low to high
-
 adj_js_srr2 <- adj_js_df %>% 
   filter(adj_js_df$srr_1_name == "2" | adj_js_df$srr_2_name == "2" ) %>%
   arrange(adjusted_js)
@@ -99,7 +93,7 @@ both_js_srr2 <- both_js_srr2 %>%
                    by = join_by(srr_2_name == article_id))
 
 
-both_js_srr2 <- both_js_srr2 %>% dplyr::mutate(search_diff = difftime(temporal_seq_date_parsed, '2012-07-15', units = 'days')/30)
+both_js_srr2 <- both_js_srr2 %>% dplyr::mutate(search_diff_in_month = difftime(temporal_seq_date_parsed, '2012-07-15', units = 'days')/30)
 
 # investigate the negative decrease in between SRR #2 and SRR #8
 edge_list_temp <- edge_list %>% filter(from %in% c(2,8))
