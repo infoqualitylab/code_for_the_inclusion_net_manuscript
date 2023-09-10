@@ -62,6 +62,8 @@ node_list <- union(neighbors(G, V(G)[V(G)$name == '26'], mode = 'out'),
 
 total_num <- length(node_list)
 
+post_num <- 0
+
 for (node_x in node_list){
   
   rank_node_x <- igraph::vertex_attr(G, 'temporal_seq_rank', index = node_x)
