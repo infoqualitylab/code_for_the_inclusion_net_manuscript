@@ -95,6 +95,15 @@ both_js_srr2 <- both_js_srr2 %>%
 
 both_js_srr2 <- both_js_srr2 %>% dplyr::mutate(search_diff_in_month = difftime(temporal_seq_date_parsed, '2012-07-15', units = 'days')/30)
 
+both_js_srr2$search_diff_in_month <- round(as.numeric(both_js_srr2$search_diff_in_month),0)
+
+
+##############
+##Table 2(a)##
+##############
+both_js_srr2 <- both_js_srr2 %>% select(srr_2_name, search_diff_in_month, adjusted_js,
+                                        reg_js, js_diff)
+
 # investigate the negative decrease in between SRR #2 and SRR #8
 edge_list_temp <- edge_list %>% filter(from %in% c(2,8))
 
