@@ -91,6 +91,15 @@ both_js_srr3 <- both_js_srr3 %>%
 
 both_js_srr3 <- both_js_srr3 %>% dplyr::mutate(search_diff_in_month = difftime(temporal_seq_date_parsed, '2000-07-15', units = 'days')/30)
 
+both_js_srr3$search_diff_in_month <- round(as.numeric(both_js_srr3$search_diff_in_month),0)
+
+
+##############
+##Table 2(b)##
+##############
+both_js_srr3 <- both_js_srr3 %>% select(srr_2_name, search_diff_in_month, adjusted_js,
+                                        reg_js, js_diff) %>% filter(srr_2_name != '1') %>%
+  filter(srr_2_name != '2')
 
 ### SRR #12
 # create a dataframe of adjusted JS ranked from low to high
@@ -142,6 +151,16 @@ both_js_srr12 <- both_js_srr12 %>%
 
 
 both_js_srr12 <- both_js_srr12 %>% dplyr::mutate(search_diff_in_month = difftime(temporal_seq_date_parsed, '2013-05-01', units = 'days')/30)
+
+both_js_srr12$search_diff_in_month <- round(as.numeric(both_js_srr12$search_diff_in_month),0)
+
+
+##############
+##Table 2(c)##
+##############
+both_js_srr12 <- both_js_srr12 %>% select(srr_2_name, search_diff_in_month, adjusted_js,
+                                        reg_js, js_diff) %>% filter(srr_2_name != '5') %>%
+  filter(srr_2_name != '6')
 
 # check SRR #12 and SRR #13
 # investigate the negative decrease in between SRR #2 and SRR #8
