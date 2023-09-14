@@ -107,21 +107,21 @@ avg_adj_js_ts_df <- tibble(date = lubridate::parse_date_time(date_vector, orders
 # add labels for making facets in plotting
 avg_adj_js_ts_df$label <- stringr::str_c("SRR\n#", avg_adj_js_ts_df$srr_name)
 
-avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#1"] <- 'SRR\n#1*'
-avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#2"] <- 'SRR\n#2*'
-avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#3"] <- 'SRR\n#3*'
+# avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#1"] <- 'SRR\n#1*'
+# avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#2"] <- 'SRR\n#2*'
+avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#3"] <- 'SRR\n#3(T)'
 
-avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#5"] <- 'SRR\n#5**'
-avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#6"] <- 'SRR\n#6**'
-avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#12"] <- 'SRR\n#12**'
+# avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#5"] <- 'SRR\n#5**'
+# avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#6"] <- 'SRR\n#6**'
+avg_adj_js_ts_df$label[avg_adj_js_ts_df$label == "SRR\n#12"] <- 'SRR\n#12(T)'
 
 avg_adj_js_ts_df$label <- factor(avg_adj_js_ts_df$label,
-                                 levels = c("SRR\n#1*",
-                                            "SRR\n#2*",
-                                            "SRR\n#3*",
-                                            "SRR\n#5**",
-                                            "SRR\n#6**",
-                                            "SRR\n#12**",                                            
+                                 levels = c("SRR\n#1",
+                                            "SRR\n#2",
+                                            "SRR\n#3(T)",
+                                            "SRR\n#5",
+                                            "SRR\n#6",
+                                            "SRR\n#12(T)",                                            
                                             "SRR\n#4",
                                             "SRR\n#7",
                                             "SRR\n#8",
