@@ -78,7 +78,7 @@ both_js_srr3 <- dplyr::inner_join(x = dplyr::select(adj_js_srr3,srr_2_name, adju
                                   by= 'srr_2_name')
 
 both_js_srr3 <- both_js_srr3 %>%
-  dplyr:: mutate(js_diff = round((adjusted_js - reg_js)/adjusted_js * 100, 1))
+  dplyr:: mutate(fold_change = round(adjusted_js/reg_js, 2))
 
 
 both_js_srr3$srr_2_name <- as.integer(both_js_srr3$srr_2_name)
@@ -98,7 +98,7 @@ both_js_srr3$search_diff_in_month <- round(as.numeric(both_js_srr3$search_diff_i
 ##Table 2(b)##
 ##############
 both_js_srr3 <- both_js_srr3 %>% select(srr_2_name, search_diff_in_month, adjusted_js,
-                                        reg_js, js_diff) %>% filter(srr_2_name != '1') %>%
+                                        reg_js, fold_change) %>% filter(srr_2_name != '1') %>%
   filter(srr_2_name != '2')
 
 ### SRR #12
@@ -139,7 +139,7 @@ both_js_srr12 <- dplyr::inner_join(x = dplyr::select(adj_js_srr12,srr_2_name, ad
                                   by= 'srr_2_name')
 
 both_js_srr12 <- both_js_srr12 %>%
-  dplyr:: mutate(js_diff = round((adjusted_js - reg_js)/adjusted_js * 100, 1))
+  dplyr:: mutate(fold_change = round(adjusted_js/reg_js, 2))
 
 
 both_js_srr12$srr_2_name <- as.integer(both_js_srr12$srr_2_name)
@@ -159,7 +159,7 @@ both_js_srr12$search_diff_in_month <- round(as.numeric(both_js_srr12$search_diff
 ##Table 2(c)##
 ##############
 both_js_srr12 <- both_js_srr12 %>% select(srr_2_name, search_diff_in_month, adjusted_js,
-                                        reg_js, js_diff) %>% filter(srr_2_name != '5') %>%
+                                        reg_js, fold_change) %>% filter(srr_2_name != '5') %>%
   filter(srr_2_name != '6')
 
 # check SRR #12 and SRR #13
