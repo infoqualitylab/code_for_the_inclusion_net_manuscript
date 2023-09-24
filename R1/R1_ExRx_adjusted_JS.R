@@ -82,7 +82,7 @@ both_js_srr2 <- dplyr::inner_join(x = dplyr::select(adj_js_srr2,srr_2_name, adju
                                   by= 'srr_2_name')
 
 both_js_srr2 <- both_js_srr2 %>%
-  dplyr:: mutate(js_diff = round((adjusted_js - reg_js)/adjusted_js * 100, 1))
+  dplyr:: mutate(fold_change = round(adjusted_js/reg_js, 2))
 
 
 both_js_srr2$srr_2_name <- as.integer(both_js_srr2$srr_2_name)
@@ -102,7 +102,7 @@ both_js_srr2$search_diff_in_month <- round(as.numeric(both_js_srr2$search_diff_i
 ##Table 2(a)##
 ##############
 both_js_srr2 <- both_js_srr2 %>% select(srr_2_name, search_diff_in_month, adjusted_js,
-                                        reg_js, js_diff)
+                                        reg_js, fold_change)
 
 # investigate the negative decrease in between SRR #2 and SRR #8
 edge_list_temp <- edge_list %>% filter(from %in% c(2,8))
