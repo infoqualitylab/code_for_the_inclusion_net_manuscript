@@ -1,4 +1,4 @@
-# Inclusion Network Manuscript
+# Code for the Inclusion Network Manuscript
 
 ## File Description
 
