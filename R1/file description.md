@@ -12,6 +12,12 @@ R1_functions.R: this file holds necessary functions for the set of R scripts in 
 
 R1_salt_adjusted_JS.R: this file is responsible for generating Table 2(b).
 
+R1_salt_controversy_community.R: this file is responsible for generating Figure 4 of the manuscript.
+
+R1_salt_ggraph_srr12.R: this file is responsible for generating Figure 3 of the manuscript.
+
+R1_salt_time_series.R: this file is responsible for generating Figure 6 of the manuscript. 
+
 
 
 
