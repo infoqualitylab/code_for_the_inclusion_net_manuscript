@@ -4,7 +4,7 @@
 # Author: Yuanxi Fu
 # Description: this file is responsible of computing the fraction 
 # of ExRx PSRs in a set that were published after the search date of
-# a particular ExRx SRR: 
+# a particular ExRx SRR in Figure 2: 
 # Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
 # Exploring Evidence Selection with the Inclusion Network. 
 # MetaArXiv. https://doi.org/10.31222/osf.io/zh9vp 
