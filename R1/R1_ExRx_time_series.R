@@ -3,7 +3,7 @@
 #
 # Author: Yuanxi Fu
 # 
-# Description: # Description: this file is responsible of generating figure 8 
+# Description: this file is responsible of generating Figure 8 
 # of the manuscript: 
 # Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
 # Exploring Evidence Selection with the Inclusion Network. 
