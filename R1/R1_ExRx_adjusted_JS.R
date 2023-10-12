@@ -2,7 +2,7 @@
 # R1_adjusted_JS_ExRx.R
 #
 # Author: Yuanxi Fu
-# Description: this file is responsible of generating Table 1(a) of the manuscript: 
+# Description: this file is responsible of generating Table 2(a) of the manuscript: 
 # Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
 # Exploring Evidence Selection with the Inclusion Network. 
 # MetaArXiv. https://doi.org/10.31222/osf.io/zh9vp 
