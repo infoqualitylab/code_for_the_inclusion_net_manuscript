@@ -1,8 +1,8 @@
-# R1_functions.R
+# final_functions.R
 # Author: Yuanxi Fu
 # Description: This file holds necessary functions for the set of R scripts 
 # in the current folder: 
-# https://github.com/infoqualitylab/code_for_the_inclusion_net_manuscript/tree/main/R1
+# https://github.com/infoqualitylab/code_for_the_inclusion_net_manuscript/tree/main/Final
 
 library(igraph)
 library(tidyverse)
