@@ -4,7 +4,7 @@
 
 ### Final
 Code for the published version  
-**citation comping soon**
+**citation comping soon**  
 file_description.md in the folder contains descriptions for all the scripts. 
 
 ### R1
