@@ -4,7 +4,7 @@
 
 ### Final
 Code for the published version  
-**citations comping soon**
+**citation comping soon**
 
 ### R1
 Code for R1
