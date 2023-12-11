@@ -1,24 +1,24 @@
 #
-# R1_time_series_salt.R
+# final_time_series_salt.R
 #
 # Author: Yuanxi Fu
 # Description: this file is responsible for generating Figure 6 of the manuscript
-# Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
-# Exploring Evidence Selection with the Inclusion Network. MetaArXiv. 
-# https://doi.org/10.31222/osf.io/zh9vp 
+# Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2024). 
+# Exploring Evidence Selection with the Inclusion Network. Quantitative Science Studies
+# MetaArXiv: https://doi.org/10.31222/osf.io/zh9vp 
 
 # Where to Find the data
 #
 #
-# Salt: Fu, Yuanxi; Hsiao, Tzu-Kun; Joshi, Manasi Ballal (2022): 
+# Salt: Fu, Yuanxi; Hsiao, Tzu-Kun; Joshi, Manasi Ballal (2023): 
 # The Salt Controversy Systematic Review Reports and Primary Study Reports Network Dataset . 
 # University of Illinois at Urbana-Champaign. 
-# https://doi.org/10.13012/B2IDB-6128763_V3
+# https://doi.org/10.13012/B2IDB-6128763_V4
 #
 
 
 rm(list = ls())
-source("R1_functions.R")
+source("final_functions.R")
 
 ######################
 ## Salt Controversy ##
