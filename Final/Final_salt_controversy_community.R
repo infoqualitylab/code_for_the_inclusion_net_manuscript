@@ -1,28 +1,27 @@
 #
-# R1_salt_community_detection.R
+# final_salt_community_detection.R
 #
 # author: Yuanxi Fu
 #
 # Description: this file is responsible for generating Figure 4 of the manuscript
-# Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
-# Exploring Evidence Selection with the Inclusion Network. MetaArXiv. 
-# https://doi.org/10.31222/osf.io/zh9vp 
+# Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2024). 
+# Exploring Evidence Selection with the Inclusion Network. Quantitative Science Studies
+# MetaArXiv: https://doi.org/10.31222/osf.io/zh9vp
 
 # Description: this file is also responsible for generating figures in the Table S2
 # of the supplementary material of the manuscript
-# Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
-# Exploring Evidence Selection with the Inclusion Network. MetaArXiv. 
-# https://doi.org/10.31222/osf.io/zh9vp 
-
+# Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2024). 
+# Exploring Evidence Selection with the Inclusion Network. Quantitative Science Studies
+# MetaArXiv: https://doi.org/10.31222/osf.io/zh9vp
 # Where to Find the data
 #
-# Salt: Fu, Yuanxi; Hsiao, Tzu-Kun; Joshi, Manasi Ballal (2022): 
+# Salt: Fu, Yuanxi; Hsiao, Tzu-Kun; Joshi, Manasi Ballal (2023): 
 # The Salt Controversy Systematic Review Reports and Primary Study Reports Network Dataset . 
 # University of Illinois at Urbana-Champaign. 
 # https://doi.org/10.13012/B2IDB-6128763_V3
 
 rm(list = ls())
-source("R1_functions.R")
+source("final_functions.R")
 
 # create the network
 salt_edge_list_file_path <- 'data/salt/inclusion_net_edges.csv'
