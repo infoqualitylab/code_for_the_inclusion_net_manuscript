@@ -3,23 +3,23 @@
 #
 # Author: Yuanxi Fu
 # Description: this file is responsible of generating Table 2(a) of the manuscript: 
-# Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). 
-# Exploring Evidence Selection with the Inclusion Network. 
-# MetaArXiv. https://doi.org/10.31222/osf.io/zh9vp 
+# Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2024). 
+# Exploring Evidence Selection with the Inclusion Network. Quantitative Science Studies
+# MetaArXiv: https://doi.org/10.31222/osf.io/zh9vp 
 #
 #
 # Where to Find the data
 #
-# ExRx: Clarke, Caitlin; Lischwe Mueller, Natalie; Joshi, Manasi Ballal; Fu, Yuanxi; Schneider, Jodi (2022): 
+# ExRx: Clarke, Caitlin; Lischwe Mueller, Natalie; Joshi, Manasi Ballal; Fu, Yuanxi; Schneider, Jodi (2023): 
 # The Inclusion Network of 27 Review Articles Published between 2013-2018 
 # Investigating the Relationship Between Physical Activity and Depressive Symptoms. 
 # University of Illinois at Urbana-Champaign. 
-# https://doi.org/10.13012/B2IDB-4614455_V2
+# https://doi.org/10.13012/B2IDB-4614455_V4
 #
 
 
 rm(list = ls())
-source("R1_functions.R")
+source("final_functions.R")
 
 
 ######################
