@@ -60,21 +60,55 @@ my_layout = ggraph::create_layout(graph=largest_comp, layout = 'igraph', algorit
 # #FFC20A
 # R255, G194, B10
 
-ggraph(graph=largest_comp, layout = my_layout) + 
+fig_first_comp <- ggraph(graph=largest_comp, layout = my_layout) +
   geom_edge_fan(aes(alpha = after_stat(index)), show.legend = FALSE) +
-  geom_node_point(aes(shape=node_type, color=before_after), 
+  geom_node_point(aes(shape=node_type, color=before_after),
                   size=3.5, show.legend = FALSE) +
   geom_node_label(mapping = aes(label=ifelse(node_type == 'Systematic Review Report', name, NA),
-                      fontface = 'bold'),
+                                fontface = 'bold'),
                   show.legend = FALSE,
                   size = 4.5) +
   theme_graph(background = NULL) +
   scale_color_manual(values = c('#0C7BDC', '#FFC20A'))
 
+ggraph(graph=largest_comp, layout = my_layout) +
+  geom_edge_fan(aes(alpha = after_stat(index)), show.legend = FALSE) +
+  geom_node_point(aes(shape=node_type, color=before_after),
+                  size=3.5, show.legend = FALSE) +
+  geom_node_label(mapping = aes(label=ifelse(node_type == 'Systematic Review Report', name, NA),
+                                fontface = 'bold'),
+                  show.legend = FALSE,
+                  size = 4.5) +
+  theme_graph(background = NULL) +
+  scale_color_manual(values = c('#0C7BDC', '#FFC20A'))
+
+ggsave(filename = 'ExRx_first_comp.png',
+       plot = fig_first_comp,
+       height = 6,
+       width = 14,
+       dpi = 600, 
+       units = 'in',
+       device = 'png',
+       limitsize = FALSE)
+
+dev.off()
+
+# ==== # 
+
 second_comp_vids <- V(G)[comp_list$membership == 2]
 second_comp <- igraph::induced_subgraph(G, second_comp_vids)
 
 my_layout = ggraph::create_layout(graph=second_comp, layout = 'igraph', algorithm = 'kk')
+
+fig_second_comp <- ggraph(graph=second_comp, layout = my_layout) + 
+  geom_edge_fan(aes(alpha = after_stat(index)), show.legend = FALSE) +
+  geom_node_point(aes(shape=node_type, color=before_after), 
+                  size=4, show.legend = FALSE) +
+  geom_node_label(mapping = aes(label=ifelse(node_type == 'Systematic Review Report', name, NA),
+                                fontface = 'bold'),
+                  show.legend = FALSE) +
+  theme_graph(background = NULL) +
+  scale_color_manual(values = c('#0C7BDC', '#FFC20A'))
 
 ggraph(graph=second_comp, layout = my_layout) + 
   geom_edge_fan(aes(alpha = after_stat(index)), show.legend = FALSE) +
@@ -86,18 +120,24 @@ ggraph(graph=second_comp, layout = my_layout) +
   theme_graph(background = NULL) +
   scale_color_manual(values = c('#0C7BDC', '#FFC20A'))
 
-# ggsave(filename = 'ExRx_second_comp.png',
-#        device = 'png',
-#        height = 300,
-#        width = 400,
-#        units = 'px')
-# 
-# dev.off()
+ggsave(filename = 'ExRx_second_comp.png',
+       plot = fig_second_comp,
+       height = 3,
+       width = 4.7,
+       dpi = 600, 
+       units = 'in',
+       device = 'png',
+       limitsize = FALSE)
+
+dev.off()
+
+# ==== #
 
 third_comp_vids <- V(G)[comp_list$membership == 3]
 third_comp <- igraph::induced_subgraph(G, third_comp_vids)
 
 my_layout = ggraph::create_layout(graph=third_comp, layout = 'igraph', algorithm = 'kk')
+
 ggraph(graph=third_comp, layout = my_layout) + 
   geom_edge_fan(aes(alpha = after_stat(index)), show.legend = FALSE) +
   geom_node_point(aes(shape=node_type, color=before_after), 
@@ -107,4 +147,32 @@ ggraph(graph=third_comp, layout = my_layout) +
                   show.legend = FALSE) +
   theme_graph(background = NULL) +
   scale_color_manual(values = c('#0C7BDC', '#FFC20A'))
+
+fig_third_comp <- ggraph(graph=third_comp, layout = my_layout) + 
+  geom_edge_fan(aes(alpha = after_stat(index)), show.legend = FALSE) +
+  geom_node_point(aes(shape=node_type, color=before_after), 
+                  size=4, show.legend = FALSE) +
+  geom_node_label(mapping = aes(label=ifelse(node_type == 'Systematic Review Report', name, NA),
+                                fontface = 'bold'),
+                  show.legend = FALSE) +
+  theme_graph(background = NULL) +
+  scale_color_manual(values = c('#0C7BDC', '#FFC20A'))
+
+
+ggsave(filename = 'ExRx_third_comp.png',
+       plot = fig_third_comp,
+       height = 2.5,
+       width = 4.7,
+       dpi = 600, 
+       units = 'in',
+       device = 'png',
+       limitsize = FALSE)
+
+dev.off()
+
+# Figure 4 is a composite of the three figures
+# - ExRx_first_comp.png
+# - ExRx_second_comp.png
+# - ExRx_third_comp.png
+
 
