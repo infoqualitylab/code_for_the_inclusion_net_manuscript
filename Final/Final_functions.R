@@ -12,6 +12,8 @@ library(data.table)
 library(stringr)
 library(scales)
 library(lubridate)
+library(ggraph)
+library(tidygraph)
 
 # seperated edge_list and attribute list making functions for the two datasets
 # due to slight variations between the two datasets
