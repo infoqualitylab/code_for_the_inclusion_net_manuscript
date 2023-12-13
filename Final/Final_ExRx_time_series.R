@@ -200,5 +200,14 @@ ggplot(data = avg_adj_js_ts_df,
   scale_x_date(date_breaks = "2 years", date_labels = '%y')
 
 
+ggsave(filename = 'fig_6_ExRx_time_series.png',
+       height = 7,
+       width = 14,
+       dpi = 600, 
+       units = 'in',
+       device = 'png',
+       limitsize = FALSE)
+
+
 # figure 1200 by 600
 
