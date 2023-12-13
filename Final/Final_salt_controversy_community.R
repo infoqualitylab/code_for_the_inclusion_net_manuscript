@@ -13,6 +13,8 @@
 # Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2024). 
 # Exploring Evidence Selection with the Inclusion Network. Quantitative Science Studies
 # MetaArXiv: https://doi.org/10.31222/osf.io/zh9vp
+
+
 # Where to Find the data
 #
 # Salt: Fu, Yuanxi; Hsiao, Tzu-Kun; Joshi, Manasi Ballal (2023): 
@@ -69,6 +71,13 @@ node_shape <- case_when(
   
 )
 
+png(filename = "salt_controversy_by_study_design.png",
+    width = 6.25,
+    height = 6.25,
+    res = 600,
+    units = 'in'
+)
+
 par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
 
 plot(largest_comp, vertex.size=10, 
@@ -80,12 +89,9 @@ plot(largest_comp, vertex.size=10,
      layout = my_layout
 )
 
-dev.print(device = png,
-          filename = "salt_controversy_by_study_design.png",
-          width = fig_width,
-          height = fig_height)
-
 dev.off()
+
+
 
 # btw edge betweenness community 
 largest_comp_undirected <- as.undirected(largest_comp)
