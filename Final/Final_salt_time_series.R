@@ -186,4 +186,13 @@ ggplot(data = avg_adj_js_ts_df,
   scale_y_continuous(limits = c(0, 1.0)) +
   scale_x_date(date_breaks = "5 years", date_labels = '%y')
 
+
+ggsave(filename = 'fig_7_salt_time_series.png',
+       height = 4.7,
+       width = 14,
+       dpi = 600, 
+       units = 'in',
+       device = 'png',
+       limitsize = FALSE)
+
 # figure size: 1200 * 400
