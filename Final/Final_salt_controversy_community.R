@@ -136,7 +136,8 @@ plot(infomap,
      largest_comp_undirected, 
      layout = my_layout, 
      vertex.shape = node_shape,
-     vertex.color = node_color
+     vertex.color = node_color,
+     vertex.size = 8
 )
 
 dev.off()
@@ -156,10 +157,13 @@ par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 plot(cle, 
      largest_comp_undirected, 
      layout = my_layout, 
-     vertex.shape = node_shape
+     vertex.shape = node_shape,
+     vertex.size = 8
 )
 
 dev.off()
+
+set.seed(1L)
 
 # lpc: label.propagation.community
 lps <- igraph::label.propagation.community(largest_comp_undirected)
@@ -176,7 +180,8 @@ par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 plot(lps, 
      largest_comp_undirected, 
      layout = my_layout, 
-     vertex.shape = node_shape
+     vertex.shape = node_shape,
+     vertex.size = 8
 )
 
 dev.off()
@@ -189,7 +194,7 @@ png(filename = "communities_mlc.png",
     width = 6.25,
     height = 6.25,
     res = 600,
-    units = 'in'
+    units = 'in',
 )
 
 par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
@@ -197,7 +202,8 @@ par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 plot(mlc, 
      largest_comp_undirected, 
      layout = my_layout, 
-     vertex.shape = node_shape
+     vertex.shape = node_shape,
+     vertex.size = 8
 )
 
 dev.off()
@@ -218,7 +224,8 @@ par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 plot(sgc, 
      largest_comp_undirected, 
      layout = my_layout, 
-     vertex.shape = node_shape
+     vertex.shape = node_shape,
+     vertex.size = 8
 )
 
 dev.off()
@@ -239,7 +246,8 @@ par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 plot(wtc, 
      largest_comp_undirected, 
      layout = my_layout, 
-     vertex.shape = node_shape
+     vertex.shape = node_shape,
+     vertex.size = 8
 )
 
 dev.off()
@@ -259,7 +267,8 @@ par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 plot(louvain, 
      largest_comp_undirected, 
      layout = my_layout, 
-     vertex.shape = node_shape
+     vertex.shape = node_shape,
+     vertex.size = 8
 )
 
 dev.off()
@@ -279,7 +288,8 @@ par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
 plot(fastgreedy, 
      largest_comp_undirected, 
      layout = my_layout, 
-     vertex.shape = node_shape
+     vertex.shape = node_shape,
+     vertex.size = 8
 )
 
 dev.off()
