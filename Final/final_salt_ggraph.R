@@ -52,3 +52,25 @@ ggraph(graph=G, layout = my_layout) +
                   size = 4.5) +
   theme_graph(background = NULL) +
   scale_color_manual(values = c('#0C7BDC', '#FFC20A'))
+
+fig_salt <- ggraph(graph=G, layout = my_layout) + 
+  geom_edge_fan(aes(alpha = after_stat(index)), show.legend = FALSE) +
+  geom_node_point(aes(shape=node_type, color=before_after), 
+                  size=3.5, show.legend = FALSE) +
+  geom_node_label(mapping = aes(label=ifelse(node_type == 'Systematic Review Report', name, NA),
+                                fontface = 'bold'),
+                  show.legend = FALSE,
+                  size = 4.5) +
+  theme_graph(background = NULL) +
+  scale_color_manual(values = c('#0C7BDC', '#FFC20A'))
+
+
+ggsave(filename = 'salt_network.png',
+       plot = fig_salt,
+       height = 6,
+       width = 12,
+       dpi = 600, 
+       units = 'in',
+       device = 'png',
+       limitsize = FALSE)
+
