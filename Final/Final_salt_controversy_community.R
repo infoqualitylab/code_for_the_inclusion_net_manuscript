@@ -50,8 +50,6 @@ largest_comp <- igraph::induced_subgraph(G_salt, largest_component_vids)
 set.seed(42)
 my_layout <- igraph::layout.fruchterman.reingold(largest_comp)
 
-fig_width = 600
-fig_height = 600
 fig_bottom = 0.2
 fig_left = 0.2
 fig_right = 0.2
@@ -91,27 +89,33 @@ plot(largest_comp, vertex.size=10,
 
 dev.off()
 
-
-
+# FOR SUPPLEMENTARY MATERIALS #
 # btw edge betweenness community 
 largest_comp_undirected <- as.undirected(largest_comp)
 
 btw <- igraph::cluster_edge_betweenness(largest_comp_undirected)
 
-par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+fig_bottom = 0.1
+fig_left = 0.1
+fig_right = 0.1
+fig_top = 0.1
+
+png(filename = "communities_btw.png",
+    width = 6.25,
+    height = 6.25,
+    res = 600,
+    units = 'in'
+)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 
 plot(btw, 
      largest_comp_undirected, 
      layout = my_layout, 
      vertex.shape = node_shape,
-     vertex.color = node_color
+     vertex.color = node_color,
+     vertex.size = 8
      )
-
-dev.print(device = png,
-          filename = "communities_btw.png",
-          width = fig_width,
-          height = fig_height
-          )
 
 dev.off()
 
@@ -119,7 +123,14 @@ dev.off()
 # imfomap: infomap community
 infomap <- igraph::infomap.community(largest_comp_undirected)
 
-par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+png(filename = "communities_infomap.png",
+    width = 6.25,
+    height = 6.25,
+    res = 600,
+    units = 'in'
+)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 
 plot(infomap, 
      largest_comp_undirected, 
@@ -128,18 +139,19 @@ plot(infomap,
      vertex.color = node_color
 )
 
-dev.print(device = png,
-          filename = "communities_infomap.png",
-          width = fig_width,
-          height = fig_height
-)
-
 dev.off()
 
 # cluster_leading_eigen
 cle <- igraph::cluster_leading_eigen(largest_comp_undirected)
 
-par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+png(filename = "communities_cluster_leading_eigen.png",
+    width = 6.25,
+    height = 6.25,
+    res = 600,
+    units = 'in'
+)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 
 plot(cle, 
      largest_comp_undirected, 
@@ -147,30 +159,24 @@ plot(cle,
      vertex.shape = node_shape
 )
 
-dev.print(device = png,
-          filename = "communities_cluster_leading_eigen.png",
-          width = fig_width,
-          height = fig_height
-)
-
 dev.off()
 
 # lpc: label.propagation.community
 lps <- igraph::label.propagation.community(largest_comp_undirected)
 
-par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+png(filename = "communities_lpc.png",
+    width = 6.25,
+    height = 6.25,
+    res = 600,
+    units = 'in'
+)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 
 plot(lps, 
      largest_comp_undirected, 
      layout = my_layout, 
      vertex.shape = node_shape
-)
-
-
-dev.print(device = png,
-          filename = "communities_lpc.png",
-          width = fig_width,
-          height = fig_height
 )
 
 dev.off()
@@ -179,19 +185,19 @@ dev.off()
 # mlc: multilevel.community
 mlc <- igraph::multilevel.community(largest_comp_undirected)
 
-par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+png(filename = "communities_mlc.png",
+    width = 6.25,
+    height = 6.25,
+    res = 600,
+    units = 'in'
+)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 
 plot(mlc, 
      largest_comp_undirected, 
      layout = my_layout, 
      vertex.shape = node_shape
-)
-
-
-dev.print(device = png,
-          filename = "communities_mlc.png",
-          width = fig_width,
-          height = fig_height
 )
 
 dev.off()
@@ -200,19 +206,19 @@ dev.off()
 # sgc: spinglass.community
 sgc <- igraph::spinglass.community(largest_comp_undirected)
 
-par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+png(filename = "communities_sgc.png",
+    width = 6.25,
+    height = 6.25,
+    res = 600,
+    units = 'in'
+)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 
 plot(sgc, 
      largest_comp_undirected, 
      layout = my_layout, 
      vertex.shape = node_shape
-)
-
-
-dev.print(device = png,
-          filename = "communities_sgc.png",
-          width = fig_width,
-          height = fig_height
 )
 
 dev.off()
@@ -221,7 +227,14 @@ dev.off()
 # wtc: walktrap.community
 wtc <- igraph::walktrap.community(largest_comp_undirected)
 
-par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+png(filename = "communities_wtc.png",
+    width = 6.25,
+    height = 6.25,
+    res = 600,
+    units = 'in'
+)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 
 plot(wtc, 
      largest_comp_undirected, 
@@ -229,21 +242,19 @@ plot(wtc,
      vertex.shape = node_shape
 )
 
-
-dev.print(device = png,
-          filename = "communities_wtc.png",
-          width = fig_width,
-          height = fig_height
-)
-
 dev.off()
-
-
 
 # louvain: cluster_louvain
 louvain <- igraph::cluster_louvain(largest_comp_undirected)
 
-par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
+png(filename = "communities_louvain.png",
+    width = 6.25,
+    height = 6.25,
+    res = 600,
+    units = 'in'
+)
+
+par(mar = c(fig_bottom, fig_left, fig_top, fig_right))
 
 plot(louvain, 
      largest_comp_undirected, 
@@ -251,17 +262,17 @@ plot(louvain,
      vertex.shape = node_shape
 )
 
-
-dev.print(device = png,
-          filename = "communities_louvain.png",
-          width = fig_width,
-          height = fig_height
-)
-
 dev.off()
 
 # fastgreedy: cluster_fast_greedy
 fastgreedy <- igraph::cluster_fast_greedy(largest_comp_undirected)
+
+png(filename = "communities_fastgreedy.png",
+    width = 6.25,
+    height = 6.25,
+    res = 600,
+    units = 'in'
+)
 
 par(mar = c(fig_bottom, fig_left, fig_top, fig_right), bg=NA)
 
@@ -269,13 +280,6 @@ plot(fastgreedy,
      largest_comp_undirected, 
      layout = my_layout, 
      vertex.shape = node_shape
-)
-
-
-dev.print(device = png,
-          filename = "communities_fastgreedy.png",
-          width = fig_width,
-          height = fig_height
 )
 
 dev.off()
