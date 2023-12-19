@@ -104,4 +104,7 @@ both_js_srr2$search_diff_in_month <- round(as.numeric(both_js_srr2$search_diff_i
 both_js_srr2 <- both_js_srr2 %>% select(srr_2_name, search_diff_in_month, adjusted_js,
                                         reg_js, fold_change)
 
+# replace fold change = NA with 1 according to Eq. 3
+both_js_srr2[is.na(both_js_srr2$fold_change), "fold_change"] = 1
+
 print(both_js_srr2)
