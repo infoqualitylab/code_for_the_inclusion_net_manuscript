@@ -104,18 +104,4 @@ both_js_srr2$search_diff_in_month <- round(as.numeric(both_js_srr2$search_diff_i
 both_js_srr2 <- both_js_srr2 %>% select(srr_2_name, search_diff_in_month, adjusted_js,
                                         reg_js, fold_change)
 
-# investigate the negative decrease in between SRR #2 and SRR #8
-edge_list_temp <- edge_list %>% filter(from %in% c(2,8))
-
-edge_list_temp <- dplyr::left_join(x=edge_list_temp,
-                                   y=dplyr::select(attr_list, article_id, temporal_seq_rank),
-                                   by = join_by(from == article_id))
-
-edge_list_temp <- dplyr::rename(edge_list_temp, from_rank = 'temporal_seq_rank')
-
-edge_list_temp <- dplyr::left_join(x=edge_list_temp,
-                                   y=dplyr::select(attr_list, article_id, temporal_seq_rank),
-                                   by = join_by(to == article_id))
-edge_list_temp <- dplyr::rename(edge_list_temp, to_rank = 'temporal_seq_rank')
-
-
+print(both_js_srr2)
