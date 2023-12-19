@@ -16,7 +16,6 @@
 # https://doi.org/10.13012/B2IDB-6128763_V3
 #
 
-
 rm(list = ls())
 source("final_functions.R")
 
@@ -98,8 +97,6 @@ both_js_srr12 <- both_js_srr12 %>% select(srr_2_name, search_diff_in_month, adju
                                         reg_js, fold_change) %>% filter(srr_2_name != '5') %>%
   filter(srr_2_name != '6')
 
-edge_list_temp <- dplyr::left_join(x=edge_list_temp,
-                                   y=dplyr::select(attr_list, ID, temporal_seq_rank),
-                                   by = join_by(to == ID))
-edge_list_temp <- dplyr::rename(edge_list_temp, to_rank = 'temporal_seq_rank')
-
+## Table 2(b) ##
+both_js_srr12[is.na(both_js_srr12$fold_change), "fold_change"] = 1
+print(both_js_srr12)
