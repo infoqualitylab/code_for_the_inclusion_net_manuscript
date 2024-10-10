@@ -20,7 +20,8 @@
 #
 
 rm(list = ls())
-source("final_functions.R")
+setwd("./Final")
+source("./Final_functions.R")
 
 ######################
 ######## ExRx ########
