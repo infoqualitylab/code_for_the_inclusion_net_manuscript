@@ -23,7 +23,7 @@
 # https://doi.org/10.13012/B2IDB-6128763_V3
 
 rm(list = ls())
-source("final_functions.R")
+source("./Final_functions.R")
 
 # create the network
 salt_edge_list_file_path <- 'data/salt/inclusion_net_edges.csv'
