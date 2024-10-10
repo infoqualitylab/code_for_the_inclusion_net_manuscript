@@ -8,6 +8,15 @@ Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2024). Exploring evidence 
 
 file_description.md in the folder contains descriptions for all the scripts. 
 
+### how to run the code in Final
+1. download "Final" folder to your computer
+2. set your working directory to "Final"
+3. under the folder "Final" create a folder call "data"
+4. under "data" create a folder called "ExRx" and a folder called "salt"
+5. download both the ExRx dataset and the salt controversy dataset
+6. put the files into "ExRx" and "salt" respectively
+7. Rstudio should remind you to install all dependencies. If you are unsure, check Final_function.
+
 ### R1
 Code for R1
 preprint: Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). Exploring Evidence Selection with the Inclusion Network. MetaArXiv. [https://doi.org/10.31222/osf.io/zh9vp](https://doi.org/10.31222/osf.io/zh9vp)  
@@ -28,10 +37,4 @@ Clarke, C., Lischwe Mueller, N., Joshi, M. B., Fu, Y., & Schneider, J. (2023). T
 #### The salt controversy inclusion network
 Fu, Yuanxi; Hsiao, Tzu-Kun; Joshi, Manasi Ballal; Lischwe Mueller, Natalie (2023): The Salt Controversy Systematic Review Reports and Primary Study Reports Network Dataset . University of Illinois at Urbana-Champaign. [https://doi.org/10.13012/B2IDB-6128763_V3](https://doi.org/10.13012/B2IDB-6128763_V3) 
 
-
-### how to run the code in Final
-1. under the folder "Final" create a folder call "data"
-2. under "data" create a folder called "ExRx" and a folder called "salt"
-3. download both the ExRx dataset and the salt controversy dataset
-4. put the files into "ExRx" and "salt" respectively
 
