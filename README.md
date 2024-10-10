@@ -4,7 +4,7 @@
 
 ### Final
 Code for the published version  
-**citation comping soon**  
+Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2024). Exploring evidence selection with the inclusion network. Quantitative Science Studies, 5(1), 219–245. [https://doi.org/10.1162/qss_a_00287](https://doi.org/10.1162/qss_a_00287)
 file_description.md in the folder contains descriptions for all the scripts. 
 
 ### R1
@@ -28,7 +28,7 @@ Clarke, C., Lischwe Mueller, N., Joshi, M. B., Fu, Y., & Schneider, J. (2023). T
 Fu, Yuanxi; Hsiao, Tzu-Kun; Joshi, Manasi Ballal; Lischwe Mueller, Natalie (2023): The Salt Controversy Systematic Review Reports and Primary Study Reports Network Dataset . University of Illinois at Urbana-Champaign. [https://doi.org/10.13012/B2IDB-6128763_V3](https://doi.org/10.13012/B2IDB-6128763_V3) 
 
 
-### How to make the data work with the code -- final version
+### how to run the code in Final
 1. under the folder "Final" create a folder call "data"
 2. under "data" create a folder called "ExRx" and a folder called "salt"
 3. download both the ExRx dataset and the salt controversy dataset
