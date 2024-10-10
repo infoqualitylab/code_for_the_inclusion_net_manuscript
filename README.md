@@ -15,7 +15,8 @@ file_description.md in the folder contains descriptions for all the scripts.
 4. under "data" create a folder called "ExRx" and a folder called "salt"
 5. download both the ExRx dataset and the salt controversy dataset
 6. put the files into "ExRx" and "salt" respectively
-7. Rstudio should remind you to install all dependencies. If you are unsure, check Final_function.
+7. Rstudio should remind you to install all dependencies. If you want to install the dependencies mannually, check the top of Final_function.R.
+8. run the code
 
 ### R1
 Code for R1
