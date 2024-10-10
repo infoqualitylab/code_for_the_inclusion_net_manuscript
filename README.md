@@ -5,6 +5,7 @@
 ### Final
 Code for the published version  
 Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2024). Exploring evidence selection with the inclusion network. Quantitative Science Studies, 5(1), 219–245. [https://doi.org/10.1162/qss_a_00287](https://doi.org/10.1162/qss_a_00287)
+
 file_description.md in the folder contains descriptions for all the scripts. 
 
 ### R1
