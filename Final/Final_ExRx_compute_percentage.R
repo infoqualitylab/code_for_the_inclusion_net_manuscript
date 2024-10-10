@@ -11,6 +11,7 @@
 #
 
 rm(list = ls())
+setwd(./Final)
 source("./Final_functions.R")
 
 ######################
