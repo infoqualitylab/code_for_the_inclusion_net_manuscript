@@ -32,10 +32,10 @@ Code fo the original submission
 Fu, Y., Clarke, C. V., Van Moer, M., & Schneider, J. (2022). Exploring Evidence Selection with the Inclusion Network. MetaArXiv. [https://doi.org/10.31222/osf.io/zh9vp](https://doi.org/10.31222/osf.io/zh9vp) **preprint V1**
 
 ### Where to find the data
-#### The ExRx inclusion network
+#### The ExRx inclusion network V4
 Clarke, C., Lischwe Mueller, N., Joshi, M. B., Fu, Y., & Schneider, J. (2023). The inclusion network of 27 review articles published between 2013-2018 investigating the relationship between physical activity and depressive symptoms [Dataset]. University of Illinois at Urbana-Champaign Databank. [https://doi.org/10.13012/B2IDB-4614455_V4](https://doi.org/10.13012/B2IDB-4614455_V4)
 
-#### The salt controversy inclusion network
+#### The salt controversy inclusion network V3
 Fu, Yuanxi; Hsiao, Tzu-Kun; Joshi, Manasi Ballal; Lischwe Mueller, Natalie (2023): The Salt Controversy Systematic Review Reports and Primary Study Reports Network Dataset . University of Illinois at Urbana-Champaign. [https://doi.org/10.13012/B2IDB-6128763_V3](https://doi.org/10.13012/B2IDB-6128763_V3) 
 
 
