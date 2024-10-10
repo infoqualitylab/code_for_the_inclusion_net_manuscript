@@ -11,7 +11,7 @@
 #
 
 rm(list = ls())
-source("final_functions.R")
+source("./Final_functions.R")
 
 ######################
 ##      ExRx        ##
