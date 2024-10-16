@@ -1,5 +1,7 @@
 # Code for the Inclusion Network Manuscript
 
+**Author: Yuanxi Fu (GitHub ID: yuanxiesa)**
+
 ## File Description
 
 ### Final
