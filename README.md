@@ -1,6 +1,6 @@
 # Code for the Inclusion Network Manuscript
 
-**Author: Yuanxi Fu (GitHub ID: yuanxiesa)**
+Author: Yuanxi Fu ([GitHub ID: yuanxiesa](https://github.com/yuanxiesa))
 
 ## File Description
 
